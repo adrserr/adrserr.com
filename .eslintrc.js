@@ -17,6 +17,7 @@ module.exports = {
     semi: 'off',
     'comma-dangle': 'off',
     'react/react-in-jsx-scope': 'off',
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }]
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
+    'import/extensions': 'never'
   }
 }
