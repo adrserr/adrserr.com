@@ -69,7 +69,7 @@ export function Container(props: ContainerProps) {
       </nav>
       <main
         id="skip"
-        className="flex flex-col flex-container  mt-auto justify-center bg-gray-50 dark:bg-gray-900 px-8"
+        className="flex flex-col flex-container mt-auto bg-gray-50 dark:bg-gray-900 px-8"
       >
         {children}
       </main>
