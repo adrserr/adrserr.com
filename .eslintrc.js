@@ -29,7 +29,8 @@ module.exports = {
     // disable eslint rule and add typescript eslint one to avoid errors
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
-    'object-curly-newline': 'off'
+    'object-curly-newline': 'off',
+    'react/require-default-props': 'off'
   },
   settings: {
     'import/resolver': {

@@ -3,20 +3,21 @@ import { useTheme } from 'next-themes'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/dist/client/router'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'react-i18next'
 import { Footer } from './Footer'
 
-type Metadata = {
-  title: string
-}
 interface ContainerProps {
   children: JSX.Element | string
-  title: string
+  title?: string
+  description?: string
 }
 
 export function Container(props: ContainerProps) {
-  const { children, title } = props
+  const {
+    children,
+    title = 'Adrián Serrano - Front-End Developer',
+    description = 'Front-End Developer, Typescript Ninja'
+  } = props
 
   const [mounted, setMounted] = React.useState(false)
   const { theme, setTheme } = useTheme()
@@ -32,6 +33,8 @@ export function Container(props: ContainerProps) {
     <div className="h-full flex flex-col bg-gray-50 dark:bg-gray-900">
       <Head>
         <title>{title}</title>
+        <meta content={description} name="description" />
+        <link rel="preload" />
       </Head>
       <nav className="sticky-nav flex justify-between items-center max-w-4xl w-full p-8 my-0 md:my-8 mx-auto bg-gray-50 dark:bg-gray-900 bg-opacity-60">
         <a href="#skip" className="sr-only focus:not-sr-only">
@@ -40,6 +43,7 @@ export function Container(props: ContainerProps) {
         <div className="flex">
           <button
             type="button"
+            aria-label="Theme"
             className="h-10 w-10 p-3 bg-gray-200 dark:bg-gray-700 rounded-md mr-3"
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
           >
@@ -64,6 +68,7 @@ export function Container(props: ContainerProps) {
           {locale && locales && (
             <button
               type="button"
+              aria-label="Language"
               className="h-10 w-10 p-3 bg-gray-200 dark:bg-gray-700 rounded-md"
               onClick={() => {
                 push(pathname, undefined, {
