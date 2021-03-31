@@ -68,7 +68,7 @@ export function Container(props: ContainerProps) {
               onClick={() => {
                 push(pathname, undefined, {
                   locale:
-                    locales?.indexOf(locale) === 0 ? locales[1] : locales[0] // TODO:
+                    locales?.indexOf(locale) === 0 ? locales[1] : locales[0]
                 })
               }}
             >
