@@ -7,9 +7,9 @@ import { appWithTranslation } from 'next-i18next'
 library.add(fab)
 
 function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return (
     <ThemeProvider attribute="class" defaultTheme="light">
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <Component {...pageProps} />
     </ThemeProvider>
   )

@@ -1,0 +1,12 @@
+{
+  "header": {
+    "about": "About",
+    "cv": "CV",
+    "blog": "Blog",
+    "skipToContent": "Skip to content"
+  },
+  "index": {
+    "title": "Hi, I'm Adrián Serrano 🤟🏽",
+    "description": "I'm a Software Engineer, I work at Electronic Arts as Front-End Developer with Javascript, Typescript and React. This is my blog, I hope you enjoy it!"
+  } 
+}
