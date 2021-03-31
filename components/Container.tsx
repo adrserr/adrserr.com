@@ -34,7 +34,21 @@ export function Container(props: ContainerProps) {
       <Head>
         <title>{title}</title>
         <meta content={description} name="description" />
-        <link rel="preload" />
+        <link rel="preload" href="https://vitals.vercel-insights.com" />
+        <link
+          rel="preload"
+          href="/fonts/montserrat-v15-latin-regular.woff"
+          as="font"
+          type="font/woff"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/montserrat-v15-latin-regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </Head>
       <nav className="sticky-nav flex justify-between items-center max-w-4xl w-full p-8 my-0 md:my-8 mx-auto bg-gray-50 dark:bg-gray-900 bg-opacity-60">
         <a href="#skip" className="sr-only focus:not-sr-only">
