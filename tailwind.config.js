@@ -34,10 +34,10 @@ module.exports = {
           }
         }
       })
+    },
+    variants: {
+      typography: ['dark']
     }
-  },
-  variants: {
-    typography: ['dark']
   },
   plugins: [tailwindTypography]
 }
