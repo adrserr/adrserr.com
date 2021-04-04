@@ -25,7 +25,7 @@ module.exports = {
     flex: {
       container: '1 0 auto'
     },
-    typography: (theme) => ({}),
+    typography: () => ({}),
     extend: {
       typography: (theme) => ({
         dark: {
@@ -36,7 +36,8 @@ module.exports = {
       })
     },
     variants: {
-      typography: ['dark']
+      typography: ['dark'],
+      appearance: []
     }
   },
   plugins: [tailwindTypography]

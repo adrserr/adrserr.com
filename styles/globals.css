@@ -36,6 +36,7 @@ body {
   color: var(--foreground);
   scroll-behavior: smooth;
   overscroll-behavior: none;
+  font-size: 16px;
 }
 
 #__next {
@@ -53,6 +54,13 @@ body {
   top: 0;
   backdrop-filter: saturate(180%) blur(20px);
   transition: background-color 0.1 ease-in-out;
+}
+
+.lang-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 2.8rem;
 }
 
 a {

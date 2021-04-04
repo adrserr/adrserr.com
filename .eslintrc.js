@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -16,7 +16,8 @@ module.exports = {
     'react',
     '@typescript-eslint',
     'eslint-plugin-react-hooks',
-    'eslint-plugin-jsx-a11y'
+    'eslint-plugin-jsx-a11y',
+    'prettier'
   ],
   rules: {
     semi: 'off',
@@ -30,7 +31,8 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'object-curly-newline': 'off',
-    'react/require-default-props': 'off'
+    'react/require-default-props': 'off',
+    'prettier/prettier': 'error'
   },
   settings: {
     'import/resolver': {
