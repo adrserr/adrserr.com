@@ -32,7 +32,8 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error'],
     'object-curly-newline': 'off',
     'react/require-default-props': 'off',
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'error',
+    'react/prop-types': 'off'
   },
   settings: {
     'import/resolver': {

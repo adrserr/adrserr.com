@@ -4,3 +4,5 @@ import { OnlyStringKeys } from './utilityTypes'
 export interface Resources {
   common: OnlyStringKeys<typeof common>
 }
+
+export type Locale = 'en' | 'es'

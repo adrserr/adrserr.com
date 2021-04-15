@@ -1,9 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Container } from '../components'
+import { BlogPost, Container } from '../components'
+import { getAllPostsSummaryByLocale } from '../lib/mdx'
+import { Locale } from '../types'
 
-export default function Home() {
+export default function Home({ posts }: any) {
+  // TODO: type
   const { t } = useTranslation('common')
+  const latestPosts = posts.slice(0, 3)
 
   return (
     <Container title="Adrián Serrano - Front End Developer">
@@ -14,13 +18,26 @@ export default function Home() {
         <h2 className="prose text-gray-700 dark:text-gray-50 mb-16">
           {t('index.description')}
         </h2>
+        <h3 className="font-black text-3xl sm:text-3xl tracking-tight mb-4 text-gray-700 dark:text-gray-50">
+          {t('index.recentPosts')}
+        </h3>
+        {latestPosts.map((
+          blogPost: any // TODO:
+        ) => (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <BlogPost {...blogPost} />
+        ))}
       </div>
     </Container>
   )
 }
 
-export const getStaticProps = async ({ locale }: { locale: string }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['common']))
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+  const posts = getAllPostsSummaryByLocale(locale as Locale)
+  return {
+    props: {
+      posts,
+      ...(await serverSideTranslations(locale, ['common']))
+    }
   }
-})
+}

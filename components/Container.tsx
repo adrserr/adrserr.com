@@ -37,7 +37,6 @@ export function Container(props: ContainerProps) {
         <meta content={description} name="description" />
         <link rel="alternate" hrefLang="en" href="http://localhost:3000/" />
         <link rel="alternate" hrefLang="es" href="http://localhost:3000/es" />
-
         <link
           rel="alternate"
           hrefLang="x-default"

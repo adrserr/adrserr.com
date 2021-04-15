@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/prism-vsc-dark-plus.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { ThemeProvider } from 'next-themes'

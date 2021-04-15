@@ -17,7 +17,7 @@ export const LanguageSelect = () => {
       value={router.locale}
       style={{ backgroundImage }}
       onChange={(event: ChangeEvent<HTMLSelectElement>) => {
-        router.push(router.pathname, undefined, {
+        router.push(router.asPath, undefined, {
           locale: event?.target.value
         })
       }}
