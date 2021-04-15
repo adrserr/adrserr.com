@@ -3,6 +3,7 @@ const { fontFamily } = require('tailwindcss/defaultTheme')
 const tailwindTypography = require('@tailwindcss/typography')
 
 module.exports = {
+  mode: 'jit',
   purge: {
     enabled: true,
     content: [
