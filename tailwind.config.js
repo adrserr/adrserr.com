@@ -3,7 +3,7 @@ const { fontFamily } = require('tailwindcss/defaultTheme')
 const tailwindTypography = require('@tailwindcss/typography')
 
 module.exports = {
-  mode: 'jit',
+  // mode: 'jit', // FIXME: not working
   purge: {
     enabled: true,
     content: [
@@ -17,7 +17,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     fontFamily: {
-      sans: ['Montserrat', ...fontFamily.sans]
+      sans: ['Raleway', ...fontFamily.sans]
     },
     colors: {
       gray: colors.blueGray

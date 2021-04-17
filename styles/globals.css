@@ -2,16 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* montserrat-regular - latin */
+/* raleway-regular - latin */
 @font-face {
-  font-family: 'Montserrat';
+  font-family: 'Raleway';
   font-style: normal;
-  font-weight: 400;
-  src: local(''),
-    url('/fonts/montserrat-v15-latin-regular.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('/fonts/montserrat-v15-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  /* web performance, while loading font show text with system font lighthouse https://web.dev/font-display/?utm_source=lighthouse&utm_medium=devtools */
+  font-weight: 100 900;
+  src: local(''), url('/fonts/Raleway-VF.woff2') format('woff2'); /* Super Modern Browsers */
+  font-display: swap;
+}
+/* raleway-700italic - latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 100 900;
+  src: local(''), url('/fonts/Raleway-Italic-VF.woff2') format('woff2'); /* Super Modern Browsers */
   font-display: swap;
 }
 
