@@ -30,7 +30,11 @@ export const BlogPost = (props: BlogPost) => {
               {title}
             </h4>
             <p className="text-gray-500 text-left md:text-right w-32 mb-4 md:mb-0">
-              {readingTime}
+              {readingTime} &#8226;{' '}
+              {new Date(publishedAt).toLocaleString(locale, {
+                month: 'short',
+                year: '2-digit'
+              })}
             </p>
           </div>
           <p className="text-gray-600 dark:text-gray-400">{summary}</p>

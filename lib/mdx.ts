@@ -40,7 +40,7 @@ export const getPostSummaryBySlug = (slug: string, locale: Locale) => {
 
   return {
     slug,
-    readingTime: readingTime(content).text,
+    readingTime: readingTime(content).text.replace('min read', 'min'),
     summary: data.summary as string,
     title: data.title as string,
     publishedAt: data.publishedAt as Date,
