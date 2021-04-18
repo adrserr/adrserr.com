@@ -5,7 +5,7 @@ import readingTime from 'reading-time'
 import { Locale } from '../types'
 
 /** Post directory */
-const POST_PATH = path.join(process.cwd(), 'posts')
+const POST_PATH = path.join(process.cwd(), 'data/posts')
 
 /** Get All post file paths and filter by .mdx extension */
 export const getPostsPaths = (locale: Locale) =>

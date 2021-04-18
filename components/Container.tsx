@@ -11,13 +11,19 @@ interface ContainerProps {
   children: JSX.Element | string
   title?: string
   description?: string
+  publishedAt?: string
+  type?: 'article' | 'website'
+  image?: string
 }
 
 export function Container(props: ContainerProps) {
   const {
     children,
     title = 'Adrián Serrano - Front-End Developer',
-    description = 'Front-End Developer, Typescript Ninja'
+    description = 'Front-End Developer, Typescript Ninja',
+    publishedAt,
+    image,
+    type = 'website'
   } = props
 
   const [mounted, setMounted] = React.useState(false)
@@ -35,31 +41,26 @@ export function Container(props: ContainerProps) {
       <Head>
         <title>{title}</title>
         <meta content={description} name="description" />
-        <link rel="alternate" hrefLang="en" href="http://localhost:3000/" />
-        <link rel="alternate" hrefLang="es" href="http://localhost:3000/es" />
+        <meta name="robots" content="follow, index" />
+        <link rel="canonical" href={`https://adrserr.com${router.asPath}`} />
+        <meta
+          property="og:url"
+          content={`https://adrserr.com${router.asPath}`}
+        />
+        <meta property="og:type" content={type} />
+        <meta property="og:site_name" content="Adrián Serrano" />
+        <meta property="og:description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:image" content={image} />
+        {publishedAt && (
+          <meta property="article:published_time" content={publishedAt} />
+        )}
+        <link rel="alternate" hrefLang="en" href="https://adrserr.com/" />
+        <link rel="alternate" hrefLang="es" href="https://adrserr.com/es" />
         <link
           rel="alternate"
           hrefLang="x-default"
-          href="http://localhost:3000/"
-        />
-        <link
-          rel="preload"
-          as="fetch"
-          href="https://vitals.vercel-insights.com"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Raleway-VF.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Raleway-Italic-VF.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
+          href="https://adrserr.com/"
         />
       </Head>
       <nav className="sticky-nav flex justify-between items-center max-w-4xl w-full p-8 my-2 md:my-8 mx-auto bg-gray-50 dark:bg-gray-900 bg-opacity-60">

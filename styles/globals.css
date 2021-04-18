@@ -8,7 +8,7 @@
   font-style: normal;
   font-weight: 100 900;
   src: local(''), url('/fonts/Raleway-VF.woff2') format('woff2'); /* Super Modern Browsers */
-  font-display: swap;
+  font-display: optional;
 }
 /* raleway-700italic - latin */
 @font-face {
@@ -16,18 +16,20 @@
   font-style: italic;
   font-weight: 100 900;
   src: local(''), url('/fonts/Raleway-Italic-VF.woff2') format('woff2'); /* Super Modern Browsers */
-  font-display: swap;
+  font-display: optional;
 }
 
 :root {
   /* Your default theme */
   --background: theme('colors.gray.50');
   --foreground: black;
+  --code-block-bg: theme('colors.gray.800');
 }
 
 .dark {
   --background: theme('colors.gray.900');
   --foreground: white;
+  --code-block-bg: theme('colors.gray.800');
 }
 
 html,

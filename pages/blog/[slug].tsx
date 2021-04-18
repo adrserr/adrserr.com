@@ -29,8 +29,8 @@ interface BlogProps {
   source: MdxRemote.Source
   frontMatter: {
     title: string
-    publishedAt: Date
-    updatedAt?: Date
+    publishedAt: string
+    updatedAt?: string
     summary: string
     readingTime: {
       text: string
@@ -44,7 +44,12 @@ interface BlogProps {
 export default function Blog({ source, frontMatter }: BlogProps) {
   const content = hydrate(source, { components })
   return (
-    <Container title="TEST">
+    <Container
+      title={frontMatter.title}
+      type="article"
+      publishedAt={frontMatter.publishedAt}
+      description={frontMatter.summary}
+    >
       <article className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16 w-full">
         {frontMatter.title}
         {content}

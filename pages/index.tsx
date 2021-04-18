@@ -25,7 +25,7 @@ export default function Home({ posts }: any) {
           blogPost: any // TODO:
         ) => (
           // eslint-disable-next-line react/jsx-props-no-spreading
-          <BlogPost {...blogPost} />
+          <BlogPost key={`${blogPost.slug}-${blogPost.locale}`} {...blogPost} />
         ))}
       </div>
     </Container>
