@@ -1,32 +1,17 @@
-/* eslint-disable global-require */
-import matter from 'gray-matter'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import hydrate from 'next-mdx-remote/hydrate'
-import renderToString from 'next-mdx-remote/render-to-string'
-import Head from 'next/head'
 import { GetStaticPaths } from 'next'
-// eslint-disable-next-line import/no-unresolved
-import { MdxRemote } from 'next-mdx-remote/types'
+import { bundleMDX } from 'mdx-bundler'
+import { getMDXComponent } from 'mdx-bundler/client'
 // @ts-ignore
 import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
+import React from 'react'
 import { Container } from '../../components'
 import { getPostBySlug, getPostsPaths, mapPostsPaths } from '../../lib/mdx'
 import { Locale } from '../../types'
 
-// Custom components/renderers to pass to MDX.
-// Since the MDX files aren't loaded by webpack, they have no knowledge of how
-// to handle import statements. Instead, you must include components in scope
-// here.
-const components = {
-  // It also works with dynamically-imported components, which is especially
-  // useful for conditionally loading components for certain routes.
-  // See the notes in README.md for more details.
-  Head
-}
-
 interface BlogProps {
-  source: MdxRemote.Source
+  code: string
   frontMatter: {
     title: string
     publishedAt: string
@@ -41,8 +26,8 @@ interface BlogProps {
   }
 }
 
-export default function Blog({ source, frontMatter }: BlogProps) {
-  const content = hydrate(source, { components })
+export default function Blog({ code, frontMatter }: BlogProps) {
+  const Component = React.useMemo(() => getMDXComponent(code), [code])
   return (
     <Container
       title={frontMatter.title}
@@ -51,8 +36,12 @@ export default function Blog({ source, frontMatter }: BlogProps) {
       description={frontMatter.summary}
     >
       <article className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16 w-full">
-        {frontMatter.title}
-        {content}
+        <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-gray-900 dark:text-gray-50">
+          {frontMatter.title}
+        </h1>
+        <div className="prose dark:prose-dark max-w-none w-full">
+          <Component />
+        </div>
       </article>
     </Container>
   )
@@ -68,31 +57,27 @@ interface Params {
 export const getStaticProps = async ({ params, locale = 'en' }: Params) => {
   const source = getPostBySlug(params?.slug || '', locale as Locale)
 
-  const { content, data } = matter(source)
+  const { code, frontmatter } = await bundleMDX(source.toString(), {
+    xdmOptions(input, options) {
+      // this is the recommended way to add custom remark/rehype plugins:
+      // The syntax might look weird, but it protects you in case we add/remove
+      // plugins in the future.
+      // eslint-disable-next-line no-param-reassign
+      // options.remarkPlugins = [...(options.remarkPlugins ?? []), myRemarkPlugin]
+      // eslint-disable-next-line no-param-reassign
+      options.rehypePlugins = [...(options.rehypePlugins ?? []), mdxPrism]
 
-  const mdxSource = await renderToString(content, {
-    components,
-    // Optionally pass remark/rehype plugins
-    mdxOptions: {
-      remarkPlugins: [
-        // require('remark-autolink-headings'),
-        // require('remark-slug'),
-        // require('remark-code-titles'),
-        // require('remark-rehype')
-      ],
-      rehypePlugins: [mdxPrism]
-      // rehypePlugins: []
-    },
-    scope: data
+      return options
+    }
   })
 
   return {
     props: {
-      source: mdxSource,
+      code,
       frontMatter: {
-        readingTime: readingTime(content),
-        wordCount: content.split(/\s+/gu).length,
-        ...data
+        readingTime: readingTime(Buffer.toString()),
+        wordCount: code.split(/\s+/gu).length,
+        ...frontmatter
       },
       ...(await serverSideTranslations(locale, ['common']))
     }

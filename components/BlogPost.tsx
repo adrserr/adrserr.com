@@ -7,7 +7,7 @@ interface BlogPost {
   summary: string
   title: string
   publishedAt: Date
-  updatedAt: Date
+  updatedAt?: Date
   locale: Locale
 }
 

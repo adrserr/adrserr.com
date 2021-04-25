@@ -44,7 +44,7 @@ export const getPostSummaryBySlug = (slug: string, locale: Locale) => {
     summary: data.summary as string,
     title: data.title as string,
     publishedAt: data.publishedAt as Date,
-    updatedAt: data.updatedAt as Date,
+    updatedAt: (data.updatedAt as Date) || null,
     locale
   }
 }
