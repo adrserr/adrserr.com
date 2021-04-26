@@ -6,6 +6,9 @@ import { Locale } from '../types'
 
 /** Post directory */
 const POST_PATH = path.join(process.cwd(), 'data/posts')
+/** Locale Post path */
+const getLocalePostPath = (locale: Locale, slug: string) =>
+  path.join(POST_PATH, locale, `${slug}.mdx`)
 
 /** Get All post file paths and filter by .mdx extension */
 export const getPostsPaths = (locale: Locale) =>
@@ -13,17 +16,14 @@ export const getPostsPaths = (locale: Locale) =>
     .readdirSync(path.join(POST_PATH, locale))
     // Only include md(x) files
     .filter((thePath: string) => /\.mdx?$/.test(thePath))
-
-/** Map paths array by locale */
-export const mapPostsPaths = (paths: string[], locale: Locale) =>
-  paths
+    // Remove .mdx extension
     .map((thePath) => thePath.replace(/\.mdx?$/, ''))
     // Map the path into the static paths object required by Next.js
     .map((slug) => ({ params: { slug }, locale }))
 
 /** Get post by slug, to get front matter */
 export const getPostBySlug = (slug: string, locale: Locale) =>
-  fs.readFileSync(path.join(POST_PATH, locale, `${slug}.mdx`))
+  fs.readFileSync(getLocalePostPath(locale, slug))
 
 /** Get all posts slugs */
 export const getPostsSlugsByLocale = (locale: Locale) =>
@@ -33,10 +33,10 @@ export const getPostsSlugsByLocale = (locale: Locale) =>
 
 /** Get post summary by slug and locale */
 export const getPostSummaryBySlug = (slug: string, locale: Locale) => {
-  const fileContent = fs.readFileSync(
-    path.join(POST_PATH, locale, `${slug}.mdx`)
-  )
+  const fileContent = fs.readFileSync(getLocalePostPath(locale, slug))
   const { content, data } = matter(fileContent)
+
+  if (!data.isPublished) return null
 
   return {
     slug,
@@ -52,7 +52,11 @@ export const getPostSummaryBySlug = (slug: string, locale: Locale) => {
 export const getAllPostsSummaryByLocale = (locale: Locale) => {
   const slugs = getPostsSlugsByLocale(locale)
 
-  const posts = slugs.map((slug) => getPostSummaryBySlug(slug, locale))
+  const posts = slugs.reduce((acc, slug) => {
+    const post = getPostSummaryBySlug(slug, locale)
+    if (post) acc.push(post)
+    return acc
+  }, [] as any[])
   // .sort((p1, p2) => (p1.date > p2.date ? -1 : 1))
 
   return posts

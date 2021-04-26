@@ -7,7 +7,7 @@ import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
 import React from 'react'
 import { Container } from '../../components'
-import { getPostBySlug, getPostsPaths, mapPostsPaths } from '../../lib/mdx'
+import { getPostBySlug, getPostsPaths } from '../../lib/mdx'
 import { Locale } from '../../types'
 
 interface BlogProps {
@@ -85,8 +85,8 @@ export const getStaticProps = async ({ params, locale = 'en' }: Params) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const enPosts = mapPostsPaths(getPostsPaths('en'), 'en')
-  const esPosts = mapPostsPaths(getPostsPaths('es'), 'es')
+  const enPosts = getPostsPaths('en')
+  const esPosts = getPostsPaths('es')
 
   return {
     paths: [...enPosts, ...esPosts],

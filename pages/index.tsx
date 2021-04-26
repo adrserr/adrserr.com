@@ -12,13 +12,13 @@ export default function Home({ posts }: any) {
   return (
     <Container title="Adrián Serrano - Front End Developer">
       <div className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16">
-        <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-gray-700 dark:text-gray-50">
+        <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-gray-900 dark:text-gray-50">
           {t('index.title')}
         </h1>
-        <h2 className="prose text-gray-700 dark:text-gray-50 mb-16">
+        <h2 className="text-gray-700 dark:text-gray-300 mb-16">
           {t('index.description')}
         </h2>
-        <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-4 text-gray-700 dark:text-gray-50">
+        <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-4 text-gray-900 dark:text-gray-50">
           {t('index.recentPosts')}
         </h3>
         {latestPosts.map((

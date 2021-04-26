@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Locale } from '../types'
 
-interface BlogPost {
+interface BlogPostProps {
   slug: string
   readingTime: string
   summary: string
@@ -11,7 +11,7 @@ interface BlogPost {
   locale: Locale
 }
 
-export const BlogPost = (props: BlogPost) => {
+export const BlogPost = (props: BlogPostProps) => {
   const {
     title,
     summary,

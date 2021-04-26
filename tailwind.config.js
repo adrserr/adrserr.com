@@ -1,9 +1,9 @@
 const colors = require('tailwindcss/colors')
-const { fontFamily } = require('tailwindcss/defaultTheme')
+const { spacing, fontFamily } = require('tailwindcss/defaultTheme')
 const tailwindTypography = require('@tailwindcss/typography')
 
 module.exports = {
-  // mode: 'jit', // FIXME: not working
+  mode: 'jit',
   purge: {
     enabled: true,
     content: [
@@ -20,18 +20,61 @@ module.exports = {
       sans: ['Raleway', ...fontFamily.sans]
     },
     colors: {
-      gray: colors.blueGray
+      gray: colors.blueGray,
+      blue: colors.blue,
+      rose: colors.rose
     },
     // Footer with flexbox
     flex: {
       container: '1 0 auto'
     },
-    typography: () => ({}),
     extend: {
       typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.gray.700'),
+            a: {
+              color: theme('colors.blue.500'),
+              '&:hover': {
+                color: theme('colors.blue.700')
+              },
+              code: { color: theme('colors.blue.400') }
+            },
+            'h2,h3,h4': {
+              'scroll-margin-top': spacing[32]
+            },
+            'blockquote p:first-of-type::before': false,
+            'blockquote p:last-of-type::after': false,
+            blockquote: {
+              color: theme('colors.gray.700')
+            }
+          }
+        },
         dark: {
           css: {
-            color: theme('colors.blueGray.50')
+            color: theme('colors.gray.300'),
+            a: {
+              color: theme('colors.blue.400'),
+              '&:hover': {
+                color: theme('colors.blue.600')
+              },
+              code: { color: theme('colors.blue.400') }
+            },
+            h1: {
+              color: theme('colors.gray.50')
+            },
+            'h2,h3,h4': {
+              color: theme('colors.gray.100'),
+              'scroll-margin-top': spacing[32]
+            },
+            strong: {
+              color: theme('colors.gray.300'),
+              'font-weight': 700
+            },
+            blockquote: {
+              borderLeftColor: theme('colors.gray.700'),
+              color: theme('colors.gray.300')
+            }
           }
         }
       })

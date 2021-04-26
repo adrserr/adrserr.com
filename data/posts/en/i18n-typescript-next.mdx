@@ -1,0 +1,168 @@
+---
+title: How to add i18n to your Next.js v10 app with Typescript
+summary: How to easily add internazionalization to your next.js app using typescript with i18next
+publishedAt: 04/24/2021
+updatedAt: 04/24/2021
+isPublished: true
+---
+
+First, I want to welcome everyone. I'm glad to see you here. This is my brand new blog (actually is the first one). Some months ago, I switched to another job at Localization Engineering Team at Electronic Arts. My coworkers encourage me to write and share all the new knowledge I was gaining. Thanks to them I started thinking about the idea of creating a space where I can cool things I learn on my daily working routing or my leisure time.
+
+Having said this, we are going to talk about internationalization (aka i18n). When I first consider creating this website, I thought a lot of which language should I use, Spanish (as I am a native Spanish speaker) or English (I can reach more people). After taking into consideration both possibilities, I believed it was a splendid opportunity to improve my English while generating Spanish tech content not so easy to find.
+
+# Which library should I use?
+
+There are many libraries for this purpose, as said in next docs:
+
+> i18n library solutions like `react-intl`, `react-i18next`, `lingui`, `rosetta`
+
+In my case and for this post I will use `[i18next](https://www.i18next.com/)`. It is a very complete library, integrated not only with React but with [many other frameworks and platforms](https://www.i18next.com/overview/supported-frameworks). It provides us with plurals, context, interpolation, formats and more.
+
+We are going to install the [specific plugin](https://github.com/isaachinman/next-i18next) for next apps.
+
+```jsx
+yarn add next-i18next
+```
+
+# Translations
+
+By default, `next-i18next` expects the following folders structure for your internationalized strings:
+
+```
+.
+└── public
+    └── locales
+        ├── en
+        |   └── common.json
+        └── de
+            └── common.json
+```
+
+Here I left an [example](https://github.com/adrserr/adrserr.com/tree/main/public/locales). You can divide the project translations into as many files as you want.
+
+We can nest translations:
+
+```json
+{
+  "header": {
+    "about": "About",
+    "home": "Home",
+    "blog": "Blog"
+  },
+  "index": {
+    "title": "Hello, I'm Adrián Serrano 🤟🏽"
+  }
+}
+```
+
+# Internationalized Routing
+
+Since `v10.0.0` Next supports internationalized routing. We need this to change the content depending on the route that the user is asking for. There are two locale handling strategies: Domain Routing and Sub-Path Routing.
+
+Just a brief explanation.
+
+- **Domain Routing**: Locales can be served from different domains. We need to register one domain name for each locale. For example, in my case, I shall own [adrserr.es](http://adrserr.es) for Spanish and [adrserr.com](http://adrserr.com) for English as my default language.
+- **Sub-Path Routing**: Always use the same domain, but we add the locale in the URL path. For example, to go to the blog, we will have the following URLs: [adrserr.com/blog](http://adrserr.com/blog) for default locale (English) and [adrserr.com/es/blog](http://adrserr.com/es/blog) for Spanish. The pattern will be _websiteURL.domain/locale/subPath._
+
+For my blog, I have used **Sub-Path Routing** as is easier and cheaper (we only need to purchase one domain).
+
+## How to configure it?
+
+Next makes this super easy. Just add the following to `next.config.js` file:
+
+```jsx
+// next.config.js
+module.exports = {
+  i18n: {
+    locales: ['en', 'es'],
+    defaultLocale: 'en'
+  }
+}
+```
+
+Add as many locales as you need. Locales are [UTS Locale Identifiers](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers), a standardized format for defining locales.
+
+# Almost ready to internationalize our app.
+
+Alright, we are now ready to have our app in many languages. `next-i18next` provides us with three functions.
+
+## appWithTranslation
+
+This HOC wraps your app to add `i18NextProvider`. We need to add it in our `_app.tsx`.
+
+```tsx
+import { appWithTranslation } from 'next-i18next'
+
+const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />
+
+export default appWithTranslation(MyApp)
+```
+
+## useTranslation
+
+These hooks come from `i18next` but can be imported directly from `next-i18next`. This hook returns the function that will translate the strings depending on the locale. This hook receives from one to multiple namespaces(each separate file in each locale folder). By default the hook will send all of them, if our app is big would be recommendable to get only as needed.
+
+```tsx
+import { useTranslation } from 'next-i18next'
+
+export const Header = () => {
+  const { t } = useTranslation('header')
+
+  return (
+    <nav>
+      <p>{t('description')}</p>
+    </nav>
+  )
+}
+```
+
+## serverSideTranslations
+
+Last, but not least, this function async function has to be included in your page-level components via `getStaticProps` or `getServerSideProps`. Note that this function is only executed on the server-side, so it won't work on `getInitialProps`. It passes translations and options as props, into project pages.
+
+```tsx
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['header']))
+  }
+})
+```
+
+# Typescript
+
+You might wonder where is Typescript? If you are using typescript `v4.1+` you can get full type-safety for `t` function. `react-i18next` has embedded type definitions. We are going to [extend](https://react.i18next.com/latest/typescript) them by using _Type Augmentation_ and _Interface Merging_.
+
+First, we create a file with and interface with our resources:
+
+```tsx
+// place it where you store your types
+// import all namespaces for default language only
+import common from '../public/locales/en/common.json'
+import common from '../public/locales/en/header.json'
+
+export interface Resources {
+  common: typeof common
+  header: typeof header
+  // as many as files you have
+}
+```
+
+Then, at the root of our project, we add a `react-i18next.d.ts` file:
+
+```tsx
+// import the original type declarations
+import 'react-i18next'
+// import all namespaces (for the default language, only)
+import { Resources as MyResources } from './types'
+
+declare module 'react-i18next' {
+  // and extend them!
+  interface Resources extends MyResources {}
+}
+```
+
+We import our new resources interface and extend `react-i18next` one and _voilà_ the code editor autocompletes translation keys.
+
+ <Image alt={YouTube To MP3 Logo} src={/static/images/building-my-first-electron-app/banner.png} width={1200} height={630} priority />

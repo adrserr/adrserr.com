@@ -69,6 +69,29 @@ body {
   width: 2.8rem;
 }
 
+.prose pre {
+  @apply bg-gray-800 border dark:border-gray-700;
+}
+
+.prose pre span::-moz-selection,
+.prose pre code::-moz-selection {
+  @apply text-gray-50;
+}
+
+.prose pre span::selection,
+.prose pre code::selection {
+  @apply text-gray-50;
+}
+
+.prose :not(pre) > code {
+  @apply text-rose-500 px-1 py-0.5 border border-gray-100 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700;
+}
+
+.prose :not(pre) > code::before,
+::after {
+  display: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
