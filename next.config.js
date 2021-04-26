@@ -1,6 +1,9 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
 const { i18n } = require('./next-i18next.config')
 
-module.exports = {
+module.exports = withBundleAnalyzer({
   future: {
     webpack5: true
   },
@@ -15,4 +18,4 @@ module.exports = {
     return config
   },
   i18n
-}
+})
