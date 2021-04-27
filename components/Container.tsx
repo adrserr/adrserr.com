@@ -63,7 +63,7 @@ export function Container(props: ContainerProps) {
         <link
           rel="alternate"
           hrefLang="es"
-          href={`https://adrserr.com/es/${router.asPath}`}
+          href={`https://adrserr.com/es${router.asPath}`}
         />
         <link rel="alternate" hrefLang="x-default" href="https://adrserr.com" />
       </Head>
