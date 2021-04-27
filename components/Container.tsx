@@ -36,13 +36,17 @@ export function Container(props: ContainerProps) {
   // https://github.com/pacocoursey/next-themes#usetheme
   if (!mounted) return null
 
+  const canonical = `https://adrserr.com${router.locale === 'es' ? 'es' : ''}${
+    router.asPath
+  }`
+
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta content={description} name="description" />
         <meta name="robots" content="follow, index" />
-        <link rel="canonical" href={`https://adrserr.com${router.asPath}`} />
+        <link rel="canonical" href={canonical} />
         <meta
           property="og:url"
           content={`https://adrserr.com${router.asPath}`}
