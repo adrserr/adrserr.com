@@ -55,13 +55,17 @@ export function Container(props: ContainerProps) {
         {publishedAt && (
           <meta property="article:published_time" content={publishedAt} />
         )}
-        <link rel="alternate" hrefLang="en" href="https://adrserr.com/" />
-        <link rel="alternate" hrefLang="es" href="https://adrserr.com/es" />
         <link
           rel="alternate"
-          hrefLang="x-default"
-          href="https://adrserr.com/"
+          hrefLang="en"
+          href={`https://adrserr.com${router.asPath}`}
         />
+        <link
+          rel="alternate"
+          hrefLang="es"
+          href={`https://adrserr.com/es/${router.asPath}`}
+        />
+        <link rel="alternate" hrefLang="x-default" href="https://adrserr.com" />
       </Head>
       <nav className="sticky-nav flex justify-between items-center max-w-4xl w-full p-8 my-2 md:my-8 mx-auto bg-gray-50 dark:bg-gray-900 bg-opacity-60">
         <a href="#skip" className="sr-only focus:not-sr-only">

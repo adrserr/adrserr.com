@@ -12,25 +12,66 @@ const prettier = require('prettier');
     '!pages/api'
   ])
 
+  // FIXME: Refactor
   const sitemap = `
         <?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             ${pages
               .map((page) => {
-                const path = page
-                  .replace('pages', '')
-                  .replace('data', '')
-                  .replace('.tsx', '')
-                  .replace('.mdx', '')
-                  .replace('posts/en', 'blog')
-                  .replace('posts/es', 'es/blog')
-                  .replace('.mdx', '')
-                const route = path === '/index' ? '' : path
-                return `
+                if(!page.includes('pages')) {
+                  const path = page
+                    .replace('pages', '')
+                    .replace('data', '')
+                    .replace('.tsx', '')
+                    .replace('posts/en', 'blog')
+                    .replace('posts/es', 'es/blog')
+                    .replace('.mdx', '')
+                  const route = path === '/index' ? '' : path
+                  const child = path === 'index' ? '' : `<xhtml:link 
+                  rel="alternate"
+                  hreflang="es"
+                  href="${`https://adrserr.com${route}`}"/>
+                <xhtml:link 
+                  rel="alternate"
+                  hreflang="en"
+                  href="${`https://adrserr.com${route}`}"/>`
+                  return `
+                          <url>
+                              <loc>${`https://adrserr.com${route}`}</loc>
+                              ${child}
+                          </url>
+                      `
+                }
+              const path = page
+                .replace('.tsx', '')
+                .replace('pages', '')
+              
+              const route = page === '/index' ? '' : path
+
+              return `
                         <url>
-                            <loc>${`https://adrserr.com${route}`}</loc>
+                           <loc>${`https://adrserr.com/es${route}`}</loc>
+                           <xhtml:link 
+                            rel="alternate"
+                            hreflang="es"
+                            href="${`https://adrserr.com/es${route}`}"/>
+                         <xhtml:link 
+                            rel="alternate"
+                            hreflang="en"
+                            href="${`https://adrserr.com${route}`}"/>
                         </url>
-                    `
+                        <url>
+                           <loc>${`https://adrserr.com${route}`}</loc>
+                           <xhtml:link 
+                            rel="alternate"
+                            hreflang="es"
+                            href="${`https://adrserr.com/es${route}`}"/>
+                         <xhtml:link 
+                            rel="alternate"
+                            hreflang="en"
+                            href="${`https://adrserr.com${route}`}"/>
+                        </url>
+                      `
               })
               .join('')}
         </urlset>
