@@ -36,9 +36,8 @@ export function Container(props: ContainerProps) {
   // https://github.com/pacocoursey/next-themes#usetheme
   if (!mounted) return null
 
-  const canonical = `https://adrserr.com${router.locale === 'es' ? 'es' : ''}${
-    router.asPath
-  }`
+  const locale = router.locale === 'es' ? '/es' : ''
+  const canonical = `https://adrserr.com${locale}${router.asPath}`
 
   return (
     <>
