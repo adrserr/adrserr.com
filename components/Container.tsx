@@ -46,13 +46,6 @@ export function Container(props: ContainerProps) {
         <meta content={description} name="description" />
         <meta name="robots" content="follow, index" />
         <link rel="canonical" href={canonical} />
-        <meta property="og:url" content={canonical} key="ogurl" />
-        <meta property="og:type" content={type} />
-        <meta
-          property="og:site_name"
-          content="Adrián Serrano"
-          key="ogsitename"
-        />
         {/* Twitter open grahp */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="adrserr.com" />
@@ -60,14 +53,27 @@ export function Container(props: ContainerProps) {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
+        <meta name="twitter:creator" content="@adrserr10" />
+        <meta name="twitter:creator" content="@adrserr10" />
         {/* Other open grahp meta */}
+        <meta property="og:url" content={canonical} key="ogurl" />
+        <meta property="og:type" content={type} />
+        <meta
+          property="og:site_name"
+          content="Adrián Serrano"
+          key="ogsitename"
+        />
         <meta property="og:description" content={description} key="ogdesc" />
         <meta property="og:title" content={title} key="ogtitle" />
         <meta property="og:image" content={image} key="ogimage" />
         <meta property="og:locale" content={router.locale} />
         {router?.locales?.map((loc) =>
           loc !== router.locale ? (
-            <meta property="og:locale:alternate" content={loc} />
+            <meta
+              property="og:locale:alternate"
+              content={loc}
+              key={`og:locale:${loc}`}
+            />
           ) : (
             ''
           )
