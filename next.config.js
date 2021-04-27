@@ -8,6 +8,12 @@ module.exports = withBundleAnalyzer({
     webpack5: true
   },
   webpack: (config, { isServer, dev }) => {
+    if (isServer) {
+      // prettier-ignore
+      // eslint-disable-next-line global-require
+      require('./scripts/sitemap');
+    }
+
     if (!dev && !isServer) {
       Object.assign(config.resolve.alias, {
         react: 'preact/compat',
