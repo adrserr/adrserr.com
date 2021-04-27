@@ -46,15 +46,32 @@ export function Container(props: ContainerProps) {
         <meta content={description} name="description" />
         <meta name="robots" content="follow, index" />
         <link rel="canonical" href={canonical} />
-        <meta
-          property="og:url"
-          content={`https://adrserr.com${router.asPath}`}
-        />
+        <meta property="og:url" content={canonical} key="ogurl" />
         <meta property="og:type" content={type} />
-        <meta property="og:site_name" content="Adrián Serrano" />
-        <meta property="og:description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:image" content={image} />
+        <meta
+          property="og:site_name"
+          content="Adrián Serrano"
+          key="ogsitename"
+        />
+        {/* Twitter open grahp */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="adrserr.com" />
+        <meta property="twitter:url" content={canonical} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+        {/* Other open grahp meta */}
+        <meta property="og:description" content={description} key="ogdesc" />
+        <meta property="og:title" content={title} key="ogtitle" />
+        <meta property="og:image" content={image} key="ogimage" />
+        <meta property="og:locale" content={router.locale} />
+        {router?.locales?.map((loc) =>
+          loc !== router.locale ? (
+            <meta property="og:locale:alternate" content={loc} />
+          ) : (
+            ''
+          )
+        )}
         {publishedAt && (
           <meta property="article:published_time" content={publishedAt} />
         )}
