@@ -5,7 +5,7 @@ import { getMDXComponent } from 'mdx-bundler/client'
 // @ts-ignore
 import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
-import React from 'react'
+import { useMemo } from 'react'
 import { Container } from '../../components'
 import { getPostBySlug, getPostsPaths } from '../../lib/mdx'
 import { Locale } from '../../types'
@@ -27,7 +27,7 @@ interface BlogProps {
 }
 
 export default function Blog({ code, frontMatter }: BlogProps) {
-  const Component = React.useMemo(() => getMDXComponent(code), [code])
+  const Component = useMemo(() => getMDXComponent(code), [code])
   return (
     <Container
       title={frontMatter.title}
@@ -58,6 +58,19 @@ export const getStaticProps = async ({ params, locale = 'en' }: Params) => {
   const source = getPostBySlug(params?.slug || '', locale as Locale)
 
   const { code, frontmatter } = await bundleMDX(source.toString(), {
+    cwd: process.cwd(),
+    esbuildOptions(options) {
+      // eslint-disable-next-line no-param-reassign
+      options.minify = true
+      // eslint-disable-next-line no-param-reassign
+      options.define = {
+        'process.env.__NEXT_IMAGE_OPTS': JSON.stringify(
+          // eslint-disable-next-line no-underscore-dangle
+          process.env.__NEXT_IMAGE_OPTS
+        )
+      }
+      return options
+    },
     xdmOptions(input, options) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove
@@ -75,7 +88,7 @@ export const getStaticProps = async ({ params, locale = 'en' }: Params) => {
     props: {
       code,
       frontMatter: {
-        readingTime: readingTime(Buffer.toString()),
+        readingTime: readingTime(source.toString()),
         wordCount: code.split(/\s+/gu).length,
         ...frontmatter
       },
