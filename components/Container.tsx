@@ -22,7 +22,7 @@ export function Container(props: ContainerProps) {
     title = 'Adrián Serrano - Front-End Developer',
     description = 'Front-End Developer, Typescript Ninja',
     publishedAt,
-    image,
+    image = 'https://adrserr.com/static/images/logo.svg',
     type = 'website'
   } = props
 
@@ -46,17 +46,22 @@ export function Container(props: ContainerProps) {
         <meta content={description} name="description" />
         <meta name="robots" content="follow, index" />
         <link rel="canonical" href={canonical} />
-        {/* Twitter open grahp */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="adrserr.com" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={canonical} />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={image} />
-        <meta name="twitter:creator" content="@adrserr10" />
-        <meta name="twitter:creator" content="@adrserr10" />
-        {/* Other open grahp meta */}
-        <meta property="og:url" content={canonical} key="ogurl" />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={image} />
+
+        {/* <meta property="og:url" content={canonical} key="ogurl" />
         <meta property="og:type" content={type} />
         <meta
           property="og:site_name"
@@ -65,7 +70,7 @@ export function Container(props: ContainerProps) {
         />
         <meta property="og:description" content={description} key="ogdesc" />
         <meta property="og:title" content={title} key="ogtitle" />
-        <meta property="og:image" content={image} key="ogimage" />
+        <meta property="og:image" content={image} key="ogimage" /> */}
         <meta property="og:locale" content={router.locale} />
         {router?.locales?.map((loc) =>
           loc !== router.locale ? (
@@ -78,6 +83,18 @@ export function Container(props: ContainerProps) {
             ''
           )
         )}
+        {/* Twitter open grahp */}
+        {/* <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="adrserr.com" />
+        <meta property="twitter:url" content={canonical} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} /> */}
+        <meta name="twitter:creator" content="@adrserr10" />
+        <meta name="twitter:site" content="@adrserr10" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="300" />
         {publishedAt && (
           <meta property="article:published_time" content={publishedAt} />
         )}
