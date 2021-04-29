@@ -1,13 +1,10 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetStaticPaths } from 'next'
-import { bundleMDX } from 'mdx-bundler'
 import { getMDXComponent } from 'mdx-bundler/client'
-// @ts-ignore
-import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
 import { useMemo } from 'react'
 import { Container } from '../../components'
-import { getPostBySlug, getPostsPaths } from '../../lib/mdx'
+import { getMDXCode, getPostBySlug, getPostsPaths } from '../../lib/mdx'
 import { Locale } from '../../types'
 
 interface BlogProps {
@@ -57,32 +54,7 @@ interface Params {
 export const getStaticProps = async ({ params, locale = 'en' }: Params) => {
   const source = getPostBySlug(params?.slug || '', locale as Locale)
 
-  const { code, frontmatter } = await bundleMDX(source.toString(), {
-    cwd: process.cwd(),
-    esbuildOptions(options) {
-      // eslint-disable-next-line no-param-reassign
-      options.minify = true
-      // eslint-disable-next-line no-param-reassign
-      options.define = {
-        'process.env.__NEXT_IMAGE_OPTS': JSON.stringify(
-          // eslint-disable-next-line no-underscore-dangle
-          process.env.__NEXT_IMAGE_OPTS
-        )
-      }
-      return options
-    },
-    xdmOptions(input, options) {
-      // this is the recommended way to add custom remark/rehype plugins:
-      // The syntax might look weird, but it protects you in case we add/remove
-      // plugins in the future.
-      // eslint-disable-next-line no-param-reassign
-      // options.remarkPlugins = [...(options.remarkPlugins ?? []), myRemarkPlugin]
-      // eslint-disable-next-line no-param-reassign
-      options.rehypePlugins = [...(options.rehypePlugins ?? []), mdxPrism]
-
-      return options
-    }
-  })
+  const { code, frontmatter } = await getMDXCode(source.toString())
 
   return {
     props: {
