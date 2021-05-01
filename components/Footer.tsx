@@ -1,14 +1,16 @@
 import {
-  faGithub,
-  faLinkedin,
-  faTwitter
-} from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+  RiGithubFill,
+  RiTwitterFill,
+  RiLinkedinBoxFill,
+  RiMailFill
+} from 'react-icons/ri'
+import { NowPlaying } from './NowPlaying'
 
 interface ExternalLinkProps {
   href: string
   children: JSX.Element
 }
+
 const ExternalLink = ({ href, children }: ExternalLinkProps) => (
   <a className="w-5" target="_blank" href={href} rel="noreferrer">
     {children}
@@ -17,17 +19,20 @@ const ExternalLink = ({ href, children }: ExternalLinkProps) => (
 
 // eslint-disable-next-line import/prefer-default-export
 export const Footer = () => (
-  <footer className="flex flex-col flex-shrink-0 justify-center items-center">
-    {/* <h6>Spotify</h6> */}
-    <div className="flex space-x-7 p-6 max-w-2xl mx-auto">
+  <footer className="flex flex-col flex-shrink-0 justify-center items-center text-lg">
+    <NowPlaying />
+    <div className="flex space-x-7 p-6 max-w-2xl mx-auto items-center">
       <ExternalLink href="http://twitter.com/adrserr10">
-        <FontAwesomeIcon icon={faTwitter} />
+        <RiTwitterFill />
       </ExternalLink>
       <ExternalLink href="https://github.com/adrserr">
-        <FontAwesomeIcon icon={faGithub} />
+        <RiGithubFill />
       </ExternalLink>
       <ExternalLink href="https://www.linkedin.com/in/adrserr/">
-        <FontAwesomeIcon icon={faLinkedin} />
+        <RiLinkedinBoxFill />
+      </ExternalLink>
+      <ExternalLink href="mailto:hello@adrserr.com">
+        <RiMailFill />
       </ExternalLink>
     </div>
   </footer>

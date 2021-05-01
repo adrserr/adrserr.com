@@ -151,11 +151,6 @@ export function Container(props: ContainerProps) {
               {t('header.about')}
             </a>
           </Link>
-          <Link href="/cv">
-            <a className="p-1 sm:p-4 text-gray-900 dark:text-gray-100">
-              {t('header.cv')}
-            </a>
-          </Link>
           <Link href="/">
             <a className="p-1 sm:p-4 text-gray-900 dark:text-gray-100">
               {t('header.home')}
