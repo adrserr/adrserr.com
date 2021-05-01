@@ -9,5 +9,10 @@
     "title": "Hello, I'm Adrián Serrano 🤟🏽",
     "description": "I'm a Software Engineer, I work at Electronic Arts as a Front-End Developer with Javascript, Typescript and React. This is my blog, I hope you enjoy it!",
     "recentPosts": "Latest"
+  },
+  "footer": {
+    "nowPlaying": {
+      "notPlaying": "Not playing"
+    }
   }
 }
