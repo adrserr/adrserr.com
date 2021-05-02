@@ -1,4 +1,7 @@
 import Link from 'next/link'
+import { format } from 'date-fns'
+import esLocale from 'date-fns/locale/es'
+import enLocale from 'date-fns/locale/en-US'
 import { Locale } from '../types'
 
 interface BlogPostProps {
@@ -7,20 +10,11 @@ interface BlogPostProps {
   summary: string
   title: string
   publishedAt: Date
-  updatedAt?: Date
   locale: Locale
 }
 
 export const BlogPost = (props: BlogPostProps) => {
-  const {
-    title,
-    summary,
-    locale,
-    slug,
-    publishedAt,
-    updatedAt,
-    readingTime
-  } = props
+  const { title, summary, locale, slug, publishedAt, readingTime } = props
   return (
     <Link href={`/blog/${slug}`} locale={locale}>
       <a className="mb-8 w-full">
@@ -31,9 +25,8 @@ export const BlogPost = (props: BlogPostProps) => {
             </h4>
             <p className="text-gray-500 text-left md:text-right w-32 mb-4 md:mb-0">
               {readingTime} &#8226;{' '}
-              {new Date(publishedAt).toLocaleString(locale, {
-                month: 'short',
-                year: '2-digit'
+              {format(new Date(publishedAt), 'MMM yy', {
+                locale: locale === 'es' ? esLocale : enLocale
               })}
             </p>
           </div>

@@ -5,8 +5,8 @@ import { getAllPostsSummaryByLocale } from '../lib/mdx'
 import { Locale } from '../types'
 
 export default function Home({ posts }: any) {
-  // TODO: type
   const { t } = useTranslation('common')
+  // TODO: type
   const latestPosts = posts.slice(0, 3)
 
   return (

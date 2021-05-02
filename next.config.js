@@ -7,6 +7,9 @@ module.exports = withBundleAnalyzer({
   future: {
     webpack5: true
   },
+  images: {
+    domains: ['i.scdn.co']
+  },
   webpack: (config, { isServer, dev }) => {
     if (isServer) {
       // prettier-ignore

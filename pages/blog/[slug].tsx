@@ -1,16 +1,18 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetStaticPaths } from 'next'
-import { bundleMDX } from 'mdx-bundler'
 import { getMDXComponent } from 'mdx-bundler/client'
-// @ts-ignore
-import mdxPrism from 'mdx-prism'
 import readingTime from 'reading-time'
 import { useMemo } from 'react'
+import Image from 'next/image'
+import { format } from 'date-fns'
+import esLocale from 'date-fns/locale/es'
+import enLocale from 'date-fns/locale/en-US'
 import { Container } from '../../components'
-import { getPostBySlug, getPostsPaths } from '../../lib/mdx'
+import { getMDXCode, getPostBySlug, getPostsPaths } from '../../lib/mdx'
 import { Locale } from '../../types'
 
 interface BlogProps {
+  locale: Locale
   code: string
   frontMatter: {
     title: string
@@ -26,8 +28,13 @@ interface BlogProps {
   }
 }
 
-export default function Blog({ code, frontMatter }: BlogProps) {
+export default function Blog({ code, frontMatter, locale }: BlogProps) {
   const Component = useMemo(() => getMDXComponent(code), [code])
+  const date = frontMatter.updatedAt
+    ? frontMatter.updatedAt
+    : frontMatter.publishedAt
+  const dateFormat = locale === 'es' ? 'dd MMMM, yyyy' : 'MMMM dd, yyyy'
+
   return (
     <Container
       title={frontMatter.title}
@@ -39,6 +46,27 @@ export default function Blog({ code, frontMatter }: BlogProps) {
         <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-gray-900 dark:text-gray-50">
           {frontMatter.title}
         </h1>
+        <div className="flex flex-col md:flex-row mt-2 md:items-center justify-between w-full mb-3">
+          <div className="flex items-center">
+            <Image
+              alt="Adrián Serrano"
+              src="/avatar.jpg"
+              height={24}
+              width={24}
+              className="rounded-full"
+              quality={100}
+            />
+            <p className="text-sm  text-gray-700 dark:text-gray-300 ml-2">
+              Adrián Serrano |{' '}
+              {format(new Date(date), dateFormat, {
+                locale: locale === 'es' ? esLocale : enLocale
+              })}
+            </p>
+          </div>
+          <p className="text-sm text-gray-600 dark:text-gray-400 ml-8">
+            {frontMatter.readingTime.text.replace('read', '')} &#8226; X views
+          </p>
+        </div>
         <div className="prose dark:prose-dark max-w-none w-full">
           <Component />
         </div>
@@ -57,35 +85,11 @@ interface Params {
 export const getStaticProps = async ({ params, locale = 'en' }: Params) => {
   const source = getPostBySlug(params?.slug || '', locale as Locale)
 
-  const { code, frontmatter } = await bundleMDX(source.toString(), {
-    cwd: process.cwd(),
-    esbuildOptions(options) {
-      // eslint-disable-next-line no-param-reassign
-      options.minify = true
-      // eslint-disable-next-line no-param-reassign
-      options.define = {
-        'process.env.__NEXT_IMAGE_OPTS': JSON.stringify(
-          // eslint-disable-next-line no-underscore-dangle
-          process.env.__NEXT_IMAGE_OPTS
-        )
-      }
-      return options
-    },
-    xdmOptions(input, options) {
-      // this is the recommended way to add custom remark/rehype plugins:
-      // The syntax might look weird, but it protects you in case we add/remove
-      // plugins in the future.
-      // eslint-disable-next-line no-param-reassign
-      // options.remarkPlugins = [...(options.remarkPlugins ?? []), myRemarkPlugin]
-      // eslint-disable-next-line no-param-reassign
-      options.rehypePlugins = [...(options.rehypePlugins ?? []), mdxPrism]
-
-      return options
-    }
-  })
+  const { code, frontmatter } = await getMDXCode(source.toString())
 
   return {
     props: {
+      locale,
       code,
       frontMatter: {
         readingTime: readingTime(source.toString()),

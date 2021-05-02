@@ -1,7 +1,6 @@
 {
   "header": {
     "about": "About",
-    "cv": "CV",
     "blog": "Blog",
     "home": "Home",
     "skipToContent": "Skip to content"
@@ -10,5 +9,15 @@
     "title": "Hello, I'm Adrián Serrano 🤟🏽",
     "description": "I'm a Software Engineer, I work at Electronic Arts as a Front-End Developer with Javascript, Typescript and React. This is my blog, I hope you enjoy it!",
     "recentPosts": "Latest"
+  },
+  "footer": {
+    "nowPlaying": {
+      "notPlaying": "Not playing"
+    }
+  },
+  "404": {
+    "notFound": "Not Found",
+    "message": "We can't found what you are looking for. Maybe you have spelled something wrong, or the resource has been removed.",
+    "goHome": "Go Home"
   }
 }

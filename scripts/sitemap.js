@@ -18,37 +18,10 @@ const prettier = require('prettier');
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
             ${pages
               .map((page) => {
-                if(!page.includes('pages')) {
-                  const path = page
-                    .replace('pages', '')
-                    .replace('data', '')
-                    .replace('.tsx', '')
-                    .replace('posts/en', 'blog')
-                    .replace('posts/es', 'es/blog')
-                    .replace('.mdx', '')
-                  const route = path === '/index' ? '' : path
-                  const child = path === 'index' ? '' : `<xhtml:link 
-                  rel="alternate"
-                  hreflang="es"
-                  href="${`https://adrserr.com${route}`}"/>
-                <xhtml:link 
-                  rel="alternate"
-                  hreflang="en"
-                  href="${`https://adrserr.com${route}`}"/>`
-                  return `
-                          <url>
-                              <loc>${`https://adrserr.com${route}`}</loc>
-                              ${child}
-                          </url>
-                      `
-                }
-              const path = page
-                .replace('.tsx', '')
-                .replace('pages', '')
-              
-              const route = page === '/index' ? '' : path
-
-              return `
+                if(page.includes('pages')) {
+                  const path =page.replace('pages', '').replace('.tsx', '').replace('index', '')
+                  const route = path === '/' ? '' : path
+                   return `
                         <url>
                            <loc>${`https://adrserr.com/es${route}`}</loc>
                            <xhtml:link 
@@ -72,6 +45,26 @@ const prettier = require('prettier');
                             href="${`https://adrserr.com${route}`}"/>
                         </url>
                       `
+
+                }
+                if(page.includes('data/posts')) {
+                  const path = page.replace('data/posts/en', 'blog')
+                        .replace('data/posts/es', 'es/blog')
+                        .replace('.mdx', '')
+                        const child = path === '/' ? '' : `<xhtml:link 
+                            rel="alternate"
+                            hreflang="es"
+                            href="${`https://adrserr.com/${path}`}"/>
+                          <xhtml:link 
+                            rel="alternate"
+                            hreflang="en"
+                            href="${`https://adrserr.com/${path}`}"/>`
+                        return `<url>
+                                        <loc>${`https://adrserr.com/${path}`}</loc>
+                                        ${child}
+                                    </url>`
+                }
+             
               })
               .join('')}
         </urlset>

@@ -22,7 +22,12 @@ module.exports = {
     colors: {
       gray: colors.blueGray,
       blue: colors.blue,
-      rose: colors.rose
+      rose: colors.rose,
+      spotify: {
+        green: '#1db954',
+        white: '#fff',
+        black: '#191414'
+      }
     },
     // Footer with flexbox
     flex: {
