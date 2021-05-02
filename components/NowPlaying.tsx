@@ -14,8 +14,8 @@ export const NowPlaying = () => {
       <div className="m-1 flex">
         <Image
           className="rounded w-16 max-w-max"
-          alt={data?.album ?? 'tape'}
-          src={data?.albumImageUrl ?? '/images/tape.jpg'}
+          alt={data?.album ?? 'not playing image'}
+          src={data?.albumImageUrl ?? '/images/notPlayingImage.jpg'}
           height="64"
           width="64"
           quality={100}
