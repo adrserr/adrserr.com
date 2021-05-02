@@ -14,5 +14,10 @@
     "nowPlaying": {
       "notPlaying": "No escuchando"
     }
+  },
+  "404": {
+    "notFound": "Not Found",
+    "message": "No ha sido posible encontrar lo que estabas buscando. Quizá la url no es correcta o ha sido borrado.",
+    "goHome": "Volver al inicio"
   }
 }
