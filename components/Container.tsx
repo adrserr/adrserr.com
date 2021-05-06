@@ -42,10 +42,10 @@ export function Container(props: ContainerProps) {
   return (
     <>
       <Head>
+        <link rel="canonical" href={canonical} />
         <title>{title}</title>
         <meta content={description} name="description" />
         <meta name="robots" content="follow,index" />
-        <link rel="canonical" href={canonical} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content={type} />
