@@ -68,6 +68,11 @@ body {
   appearance: none;
   width: 2.8rem;
 }
+.prose > :first-child {
+  /* Override removing top margin, causing layout shift */
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
 
 .prose pre {
   @apply bg-gray-800 border dark:border-gray-700;

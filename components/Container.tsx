@@ -22,7 +22,7 @@ export function Container(props: ContainerProps) {
     title = 'Adrián Serrano - Front-End Developer',
     description = 'Front-End Developer, Typescript Ninja',
     publishedAt,
-    image = 'https://adrserr.com/static/images/logo.svg',
+    image = 'https://adrserr.com/images/logo.svg',
     type = 'website'
   } = props
 
@@ -44,11 +44,11 @@ export function Container(props: ContainerProps) {
       <Head>
         <title>{title}</title>
         <meta content={description} name="description" />
-        <meta name="robots" content="follow, index" />
+        <meta name="robots" content="follow,index" />
         <link rel="canonical" href={canonical} />
 
         {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={type} />
         <meta property="og:url" content={canonical} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
