@@ -31,10 +31,8 @@ export function Container(props: ContainerProps) {
   const router = useRouter()
   const { t } = useTranslation('common')
 
-  React.useEffect(() => setMounted(true), [])
-
   // https://github.com/pacocoursey/next-themes#usetheme
-  if (!mounted) return null
+  React.useEffect(() => setMounted(true), [])
 
   const locale = router.locale === 'es' ? '/es' : ''
   const canonical = `https://adrserr.com${locale}${router.asPath}`
@@ -120,6 +118,7 @@ export function Container(props: ContainerProps) {
             aria-label="Theme"
             className="h-10 w-10 p-3 bg-gray-200 dark:bg-gray-700 rounded-md mr-3"
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            disabled={!mounted}
           >
             {mounted && (
               <svg
