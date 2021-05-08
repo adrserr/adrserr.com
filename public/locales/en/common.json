@@ -19,5 +19,11 @@
     "notFound": "Not Found",
     "message": "We can't found what you are looking for. Maybe you have spelled something wrong, or the resource has been removed.",
     "goHome": "Go Home"
+  },
+  "blog": {
+    "readingTime": "read",
+    "viewsCounter": {
+      "views": "views"
+    }
   }
 }

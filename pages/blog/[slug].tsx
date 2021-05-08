@@ -7,11 +7,13 @@ import Image from 'next/image'
 import { format } from 'date-fns'
 import esLocale from 'date-fns/locale/es'
 import enLocale from 'date-fns/locale/en-US'
-import { Container } from '../../components'
+import { useTranslation } from 'react-i18next'
+import { Container, ViewsCounter } from '../../components'
 import { getMDXCode, getPostBySlug, getPostsPaths } from '../../lib/mdx'
 import { Locale } from '../../types'
 
 interface BlogProps {
+  slug: string
   locale: Locale
   code: string
   frontMatter: {
@@ -28,8 +30,9 @@ interface BlogProps {
   }
 }
 
-export default function Blog({ code, frontMatter, locale }: BlogProps) {
+export default function Blog({ code, frontMatter, locale, slug }: BlogProps) {
   const Component = useMemo(() => getMDXComponent(code), [code])
+  const { t } = useTranslation('common')
   const date = frontMatter.updatedAt
     ? frontMatter.updatedAt
     : frontMatter.publishedAt
@@ -64,7 +67,10 @@ export default function Blog({ code, frontMatter, locale }: BlogProps) {
             </p>
           </div>
           <p className="text-sm text-gray-600 dark:text-gray-400 ml-8">
-            {frontMatter.readingTime.text.replace('read', '')} &#8226; X views
+            {`${frontMatter.readingTime.text.replace('read', '')} ${t(
+              'blog.readingTime'
+            )}`}{' '}
+            &#8226; <ViewsCounter slug={slug} locale={locale} />
           </p>
         </div>
         <div className="prose dark:prose-dark max-w-none w-full">
@@ -89,6 +95,7 @@ export const getStaticProps = async ({ params, locale = 'en' }: Params) => {
 
   return {
     props: {
+      slug: params.slug,
       locale,
       code,
       frontMatter: {
