@@ -31,7 +31,8 @@ module.exports = {
     },
     // Footer with flexbox
     flex: {
-      container: '1 0 auto'
+      container: '1 0 auto',
+      'sp-img': '0 0 64px'
     },
     extend: {
       typography: (theme) => ({

@@ -24,8 +24,12 @@ export default function Home({ posts }: any) {
         {latestPosts.map((
           blogPost: any // TODO:
         ) => (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <BlogPost key={`${blogPost.slug}-${blogPost.locale}`} {...blogPost} />
+          <BlogPost
+            key={`${blogPost.slug}-${blogPost.locale}`}
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...blogPost}
+            readingTime={`${blogPost.readingTime} ${t('blog.readingTime')}`}
+          />
         ))}
       </div>
     </Container>

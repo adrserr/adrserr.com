@@ -11,7 +11,7 @@ export const NowPlaying = () => {
 
   return (
     <div className="flex flex-row border rounded-md p-2 w-72 justify-between border-gray-400">
-      <div className="m-1 flex">
+      <div className="m-1 flex w-16 flex-sp-img">
         <Image
           className="rounded w-16 max-w-max"
           alt={data?.album ?? 'not playing image'}
