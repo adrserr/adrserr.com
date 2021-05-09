@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next'
 import { Container, ViewsCounter } from '../../components'
 import { getMDXCode, getPostBySlug, getPostsPaths } from '../../lib/mdx'
 import { Locale } from '../../types'
+import { mdxComponents } from '../../components/MdxComponents'
 
 interface BlogProps {
   slug: string
@@ -74,7 +75,7 @@ export default function Blog({ code, frontMatter, locale, slug }: BlogProps) {
           </p>
         </div>
         <div className="prose dark:prose-dark max-w-none w-full">
-          <Component />
+          <Component components={mdxComponents as any} />
         </div>
       </article>
     </Container>

@@ -84,19 +84,6 @@ export const getMDXCode = async (source: string) => {
     )
   }
   return bundleMDX(source.toString(), {
-    cwd: process.cwd(),
-    esbuildOptions(options) {
-      // eslint-disable-next-line no-param-reassign
-      options.minify = true
-      // eslint-disable-next-line no-param-reassign
-      options.define = {
-        'process.env.__NEXT_IMAGE_OPTS': JSON.stringify(
-          // eslint-disable-next-line no-underscore-dangle
-          process.env.__NEXT_IMAGE_OPTS
-        )
-      }
-      return options
-    },
     xdmOptions(input, options) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove
