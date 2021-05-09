@@ -29,6 +29,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "axios": "^0.21.1",
     "date-fns": "^2.21.1",
+    "framer-motion": "^4.1.13",
     "globby": "^11.0.3",
     "gray-matter": "^4.0.3",
     "mdx-bundler": "^3.3.1",
