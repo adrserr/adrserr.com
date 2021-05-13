@@ -1,29 +1,37 @@
-import { useTheme } from 'next-themes'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { useRouter } from 'next/router'
-import { ChangeEvent } from 'react'
+import { RiArrowDropDownLine } from 'react-icons/ri'
 
 export const LanguageSelect = () => {
   const router = useRouter()
-  const { theme } = useTheme()
-
-  const backgroundImage =
-    theme === 'light'
-      ? 'url("/images/chevron-down-light.svg")'
-      : 'url("/images/chevron-down-dark.svg")'
 
   return (
-    <select
-      className="lang-select appearance-none bg-right bg-no-repeat text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900"
-      value={router.locale}
-      style={{ backgroundImage }}
-      onChange={(event: ChangeEvent<HTMLSelectElement>) => {
-        router.push(router.asPath, undefined, {
-          locale: event?.target.value
-        })
-      }}
-    >
-      <option value="en">EN</option>
-      <option value="es">ES</option>
-    </select>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger className="outline-none focus:outline-none inline-flex w-30 items-center">
+        {router.locale?.toUpperCase() || 'EN'} <RiArrowDropDownLine size="20" />
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content className="bg-gray-100 dark:bg-gray-800 w-20 rounded-md p-1 shadow cursor-pointer outline-none">
+        <DropdownMenu.Item
+          className="rounded-sm px-1 py-1 hover:bg-blue-500 dark:hover:bg-blue-900 hover:text-gray-50 hover:outline-none"
+          onSelect={() =>
+            router.push(router.asPath, undefined, {
+              locale: 'en'
+            })
+          }
+        >
+          EN
+        </DropdownMenu.Item>
+        <DropdownMenu.Item
+          className="rounded-sm px-1 py-1 hover:bg-blue-500 dark:hover:bg-blue-900 hover:text-gray-50 hover:outline-none"
+          onSelect={() =>
+            router.push(router.asPath, undefined, {
+              locale: 'es'
+            })
+          }
+        >
+          ES
+        </DropdownMenu.Item>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
   )
 }
