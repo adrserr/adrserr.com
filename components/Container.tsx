@@ -117,7 +117,9 @@ export function Container(props: ContainerProps) {
             type="button"
             aria-label="Theme"
             className="h-10 w-10 p-3 bg-gray-200 dark:bg-gray-700 rounded-md mr-3"
-            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            onClick={async () => {
+              setTheme(theme === 'light' ? 'dark' : 'light')
+            }}
             disabled={!mounted}
           >
             {mounted && (
