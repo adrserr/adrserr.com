@@ -5,7 +5,7 @@
     "home": "Home",
     "skipToContent": "Skip to content"
   },
-  "index": {
+  "home": {
     "title": "Hello, I'm Adrián Serrano 🤟🏽",
     "description": "I'm a Software Engineer, I work at Electronic Arts as a Front-End Developer with Javascript, Typescript and React. This is my blog, I hope you enjoy it!",
     "recentPosts": "Latest"
@@ -25,5 +25,12 @@
     "viewsCounter": {
       "views": "views"
     }
+  },
+  "subscribe": {
+    "title": "Join to my newsletter",
+    "description": "If you don't want to miss anything, subscribe to my newsletter to keep you posted. I will only contact for important updates, no spam.🤞🏽",
+    "subscribe": "Subscribe",
+    "alreadySubscribe": "This email account is already subscribed.",
+    "success": "You are now subscribe to my newsletter. Thanks for your interest."
   }
 }

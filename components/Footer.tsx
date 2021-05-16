@@ -19,7 +19,8 @@ const ExternalLink = ({ href, children }: ExternalLinkProps) => (
 
 // eslint-disable-next-line import/prefer-default-export
 export const Footer = () => (
-  <footer className="flex flex-col flex-shrink-0 justify-center items-center text-lg pt-8">
+  <footer className="flex flex-col flex-shrink-0 justify-center items-center text-lg pt-8 max-w-2xl mx-auto w-full mb-4">
+    <hr className="w-full border-1 border-gray-200 dark:border-gray-800 mb-8" />
     <NowPlaying />
     <div className="flex space-x-7 p-6 max-w-2xl mx-auto items-center">
       <ExternalLink href="http://twitter.com/adrserr10">
