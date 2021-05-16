@@ -1,8 +1,8 @@
-import * as React from 'react'
 import { useTheme } from 'next-themes'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Footer } from './Footer'
 import { LanguageSelect } from './LanguageSelect'
@@ -26,13 +26,13 @@ export function Container(props: ContainerProps) {
     type = 'website'
   } = props
 
-  const [mounted, setMounted] = React.useState(false)
+  const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const router = useRouter()
   const { t } = useTranslation('common')
 
   // https://github.com/pacocoursey/next-themes#usetheme
-  React.useEffect(() => setMounted(true), [])
+  useEffect(() => setMounted(true), [])
 
   const locale = router.locale === 'es' ? '/es' : ''
   const canonical = `https://adrserr.com${locale}${router.asPath}`

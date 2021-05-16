@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import fs from 'fs'
 import matter from 'gray-matter'
 import { bundleMDX } from 'mdx-bundler'
@@ -84,13 +85,7 @@ export const getMDXCode = async (source: string) => {
     )
   }
   return bundleMDX(source.toString(), {
-    xdmOptions(input, options) {
-      // this is the recommended way to add custom remark/rehype plugins:
-      // The syntax might look weird, but it protects you in case we add/remove
-      // plugins in the future.
-      // eslint-disable-next-line no-param-reassign
-      // options.remarkPlugins = [...(options.remarkPlugins ?? []), myRemarkPlugin]
-      // eslint-disable-next-line no-param-reassign
+    xdmOptions: (options) => {
       options.rehypePlugins = [...(options.rehypePlugins ?? []), mdxPrism]
 
       return options
