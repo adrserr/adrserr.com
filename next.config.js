@@ -1,7 +1,37 @@
+/* eslint-disable no-param-reassign */
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
+
+const { ESBuildMinifyPlugin } = require('esbuild-loader')
+
 const { i18n } = require('./next-i18next.config')
+
+// ESBUILD LOADER
+
+function useEsbuildMinify(config, options) {
+  const terserIndex = config.optimization.minimizer.findIndex(
+    (minimizer) => minimizer.constructor.name === 'TerserPlugin'
+  )
+  if (terserIndex > -1) {
+    config.optimization.minimizer.splice(
+      terserIndex,
+      1,
+      new ESBuildMinifyPlugin(options)
+    )
+  }
+}
+
+function useEsbuildLoader(config, options) {
+  const tsxLoader = config.module.rules.find(
+    (rule) => rule.test && rule.test.test(/\.tsx?$/)
+  )
+
+  if (tsxLoader) {
+    tsxLoader.use.loader = 'esbuild-loader'
+    tsxLoader.use.options = options
+  }
+}
 
 // https://securityheaders.com
 const ContentSecurityPolicy = `
@@ -69,20 +99,32 @@ module.exports = withBundleAnalyzer({
       }
     ]
   },
-  webpack: (config, { isServer, dev }) => {
+  webpack: (config, { isServer, dev, webpack }) => {
     if (isServer) {
       // prettier-ignore
       // eslint-disable-next-line global-require
       require('./scripts/sitemap');
     }
 
-    if (!dev && !isServer) {
-      Object.assign(config.resolve.alias, {
-        react: 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat'
-      })
+    // Fixes npm packages that depend on `fs` module
+    if (!isServer) {
+      config.resolve.fallback.fs = false
     }
+
+    useEsbuildMinify(config)
+
+    useEsbuildLoader(config, {
+      loader: 'tsx',
+      target: 'es2017'
+    })
+
+    // if (!dev && !isServer) {
+    //   Object.assign(config.resolve.alias, {
+    //     react: 'preact/compat',
+    //     'react-dom/test-utils': 'preact/test-utils',
+    //     'react-dom': 'preact/compat'
+    //   })
+    // }
     return config
   },
   i18n
