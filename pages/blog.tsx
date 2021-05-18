@@ -15,7 +15,7 @@ const Blog = ({ posts }: BlogProps) => {
 
   const filteredPosts = posts?.filter((post) =>
     `${post.title?.toLowerCase()}. ${post.summary?.toLowerCase()}`.includes(
-      searchText
+      searchText.toLowerCase()
     )
   )
 
