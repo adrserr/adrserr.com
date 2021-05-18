@@ -24,7 +24,13 @@
     "readingTime": "read",
     "viewsCounter": {
       "views": "views"
-    }
+    },
+    "description": "Front-end, web development, React, Javascript, Typescript and personal growth publications",
+    "search": "Search articles",
+    "notFound": "No posts found",
+    "summary": "Here you can find all my published articles. You can filter them by the title or description. $t(blog.articlesAvailable, {\"count\": {{articles}} }).",
+    "articlesAvailable": "There is {{articles}} available article",
+    "articlesAvailable_plural": "There are {{articles}} available articles"
   },
   "subscribe": {
     "title": "Join to my newsletter",

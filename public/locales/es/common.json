@@ -24,7 +24,13 @@
     "readingTime": "lectura",
     "viewsCounter": {
       "views": "visitas"
-    }
+    },
+    "description": "Publicaciones sobre Front-end, desarrollo web, React, Javascript, Typescript y desarrollo personal",
+    "search": "Buscar articulos",
+    "notFound": "No se ha encontrado ningún post",
+    "summary": "Aquí podrás encontrar todos mis artículos. Puedes filtrar por el título o la descripción. $t(blog.articlesAvailable, {\"count\": {{articles}} }).",
+    "articlesAvailable": "Hay {{articles}} artículo disponible",
+    "articlesAvailable_plural": "Hay {{articles}} artículos disponibles"
   },
   "subscribe": {
     "title": "Únete a mi newsletter",

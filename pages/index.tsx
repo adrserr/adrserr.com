@@ -2,17 +2,16 @@ import { useTranslation } from 'react-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { BlogPost, Container } from '../components'
 import { getAllPostsSummaryByLocale } from '../lib/mdx'
-import { Locale } from '../types'
+import { Locale, Post } from '../types'
 import { Subscribe } from '../components/Subscribe'
 
 interface HomeProps {
-  posts: any[] // FIXME:
+  posts: Post[]
   locale: Locale
 }
 
 export default function Home({ posts, locale }: HomeProps) {
   const { t } = useTranslation('common')
-  // TODO: type
   const latestPosts = posts.slice(0, 3)
 
   return (
@@ -27,9 +26,7 @@ export default function Home({ posts, locale }: HomeProps) {
         <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-4 text-gray-900 dark:text-gray-50">
           {t('home.recentPosts')}
         </h3>
-        {latestPosts.map((
-          blogPost: any // TODO:
-        ) => (
+        {latestPosts.map((blogPost) => (
           <BlogPost
             key={`${blogPost.slug}-${blogPost.locale}`}
             // eslint-disable-next-line react/jsx-props-no-spreading

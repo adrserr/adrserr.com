@@ -1,3 +1,4 @@
+import { NextApiRequest, NextApiResponse } from 'next'
 import { supabase } from '../../../lib/supabase'
 import { Locale, View } from '../../../types'
 
@@ -44,14 +45,20 @@ const addView = async (slug: string, locale: Locale) => {
   return post
 }
 
-export default async (req: any, res: any) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
-    const post = await addView(req.query.slug, req.query.locale)
+    const post = await addView(
+      req.query.slug as string,
+      req.query.locale as Locale
+    )
     return res.status(200).json({ views: post?.views })
   }
 
   if (req.method === 'GET') {
-    const views = await getViews(req.query.slug, req.query.locale)
+    const views = await getViews(
+      req.query.slug as string,
+      req.query.locale as Locale
+    )
     return res.status(200).json({ views })
   }
   return null
