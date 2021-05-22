@@ -23,12 +23,14 @@ async function generateRSSFeed(locale) {
       );
       const frontmatter = matter(content);
 
-      feed.item({
-        title: frontmatter.data.title,
-        url: `https://adrserr.com/${isESLocale}blog/${  name.replace(/\.mdx?/, '')}`,
-        date: frontmatter.data.publishedAt,
-        description: frontmatter.data.summary
-      });
+      if(frontmatter.data.isPublished) {
+        feed.item({
+          title: frontmatter.data.title,
+          url: `https://adrserr.com/${isESLocale}blog/${  name.replace(/\.mdx?/, '')}`,
+          date: frontmatter.data.publishedAt,
+          description: frontmatter.data.summary
+        });
+      }
     })
   );
 
