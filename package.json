@@ -71,6 +71,7 @@
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "postcss": "^8.2.8",
+    "rss": "^1.2.2",
     "typescript": "^4.2.3",
     "webpack": "^5.37.0"
   }

@@ -46,6 +46,14 @@ export function Container(props: ContainerProps) {
         <meta content={description} name="description" />
         <meta name="robots" content="follow,index" />
 
+        {/* RSS feed autodiscovery */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Adrián Serrano Blog"
+          href={`${locale}/rss.xml`}
+        />
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content={type} />
         <meta property="og:url" content={canonical} />
