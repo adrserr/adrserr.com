@@ -23,7 +23,7 @@ export function Container(props: ContainerProps) {
     title = 'Adrián Serrano - Front-End Developer',
     description = 'Front-End Developer, Typescript Ninja',
     publishedAt,
-    image = 'https://adrserr.com/images/logo.svg',
+    image = 'https://adrserr.com/static/favicons/android-chrome-512x512.png',
     type = 'website'
   } = props
 
