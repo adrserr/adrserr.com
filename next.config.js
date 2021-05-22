@@ -104,6 +104,8 @@ module.exports = withBundleAnalyzer({
       // prettier-ignore
       // eslint-disable-next-line global-require
       require('./scripts/sitemap');
+      // eslint-disable-next-line global-require
+      require('./scripts/RSSFeed')
     }
 
     // Fixes npm packages that depend on `fs` module

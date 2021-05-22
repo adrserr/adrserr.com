@@ -5,7 +5,7 @@
     "home": "Home",
     "skipToContent": "Ir al contenido"
   },
-  "index": {
+  "home": {
     "title": "Hola, Soy Adrián Serrano 🤟🏽",
     "description": "Soy Ingeniero de Software, trabajo en Electronic Arts como desarrollador Front-End usando Javascript, Typescript y React. Este es mi blog, espero que te guste!",
     "recentPosts": "Lo Último"
@@ -24,6 +24,19 @@
     "readingTime": "lectura",
     "viewsCounter": {
       "views": "visitas"
-    }
+    },
+    "description": "Publicaciones sobre Front-end, desarrollo web, React, Javascript, Typescript y desarrollo personal",
+    "search": "Buscar articulos",
+    "notFound": "No se ha encontrado ningún post",
+    "summary": "Aquí podrás encontrar todos mis artículos. Puedes filtrar por el título o la descripción. $t(blog.articlesAvailable, {\"count\": {{articles}} }).",
+    "articlesAvailable": "Hay {{articles}} artículo disponible",
+    "articlesAvailable_plural": "Hay {{articles}} artículos disponibles"
+  },
+  "subscribe": {
+    "title": "Únete a mi newsletter",
+    "description": "Si no quieres perderte nada, subscríbete y te mantendre informado de mis nuevos post. Nada de spam, solo cosas importantes.🤞🏽",
+    "subscribe": "Subscribirme",
+    "alreadySubscribe": "Este email ya está subscrito",
+    "success": "Ya estas subscrito. Muchas gracias por tu interés."
   }
 }

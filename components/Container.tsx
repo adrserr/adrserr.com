@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Locale } from '../types'
 import { Footer } from './Footer'
 import { LanguageSelect } from './LanguageSelect'
 
@@ -22,7 +23,7 @@ export function Container(props: ContainerProps) {
     title = 'Adrián Serrano - Front-End Developer',
     description = 'Front-End Developer, Typescript Ninja',
     publishedAt,
-    image = 'https://adrserr.com/images/logo.svg',
+    image = 'https://adrserr.com/static/favicons/android-chrome-512x512.png',
     type = 'website'
   } = props
 
@@ -45,6 +46,14 @@ export function Container(props: ContainerProps) {
         <meta content={description} name="description" />
         <meta name="robots" content="follow,index" />
 
+        {/* RSS feed autodiscovery */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Adrián Serrano Blog"
+          href={`${locale}/rss.xml`}
+        />
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content={type} />
         <meta property="og:url" content={canonical} />
@@ -59,16 +68,6 @@ export function Container(props: ContainerProps) {
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={image} />
 
-        {/* <meta property="og:url" content={canonical} key="ogurl" />
-        <meta property="og:type" content={type} />
-        <meta
-          property="og:site_name"
-          content="Adrián Serrano"
-          key="ogsitename"
-        />
-        <meta property="og:description" content={description} key="ogdesc" />
-        <meta property="og:title" content={title} key="ogtitle" />
-        <meta property="og:image" content={image} key="ogimage" /> */}
         <meta property="og:locale" content={router.locale} />
         {router?.locales?.map((loc) =>
           loc !== router.locale ? (
@@ -82,17 +81,12 @@ export function Container(props: ContainerProps) {
           )
         )}
         {/* Twitter open grahp */}
-        {/* <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="adrserr.com" />
-        <meta property="twitter:url" content={canonical} />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={image} /> */}
         <meta name="twitter:creator" content="@adrserr10" />
         <meta name="twitter:site" content="@adrserr10" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="300" />
-        <meta property="og:image:height" content="300" />
+        <meta property="og:image:type" content="image/svg+xml" />
+        <meta property="og:image:width" content="600" />
+        <meta property="og:image:height" content="600" />
+        <meta property="og:image:alt " content="Adrián Serrano's blog logo" />
         {publishedAt && (
           <meta property="article:published_time" content={publishedAt} />
         )}
@@ -168,7 +162,7 @@ export function Container(props: ContainerProps) {
       >
         {children}
       </main>
-      <Footer />
+      <Footer locale={(router.locale || 'en') as Locale} />
     </>
   )
 }

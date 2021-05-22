@@ -2,9 +2,13 @@ import {
   RiGithubFill,
   RiTwitterFill,
   RiLinkedinBoxFill,
-  RiMailFill
+  RiMailFill,
+  RiRssFill
 } from 'react-icons/ri'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { NowPlaying } from './NowPlaying'
+import { Locale } from '../types'
 
 interface ExternalLinkProps {
   href: string
@@ -18,8 +22,9 @@ const ExternalLink = ({ href, children }: ExternalLinkProps) => (
 )
 
 // eslint-disable-next-line import/prefer-default-export
-export const Footer = () => (
-  <footer className="flex flex-col flex-shrink-0 justify-center items-center text-lg pt-8">
+export const Footer = ({ locale }: { locale: Locale }) => (
+  <footer className="flex flex-col flex-shrink-0 justify-center items-center text-lg pt-8 max-w-2xl mx-auto w-full mb-4">
+    <hr className="w-10/12 md:w-full border-1 border-gray-200 dark:border-gray-800 mb-8" />
     <NowPlaying />
     <div className="flex space-x-7 p-6 max-w-2xl mx-auto items-center">
       <ExternalLink href="http://twitter.com/adrserr10">
@@ -34,6 +39,9 @@ export const Footer = () => (
       <ExternalLink href="mailto:hello@adrserr.com">
         <RiMailFill />
       </ExternalLink>
+      <Link href="/rss.xml" locale={locale}>
+        <RiRssFill />
+      </Link>
     </div>
   </footer>
 )

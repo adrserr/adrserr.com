@@ -6,7 +6,7 @@ import path from 'path'
 import readingTime from 'reading-time'
 // @ts-ignore
 import mdxPrism from 'mdx-prism'
-import { Locale } from '../types'
+import { Locale, Post } from '../types'
 
 /** Post directory */
 const POST_PATH = path.join(process.cwd(), 'data/posts')
@@ -36,7 +36,10 @@ export const getPostsSlugsByLocale = (locale: Locale) =>
     .map((slug) => slug.replace(/.mdx/i, ''))
 
 /** Get post summary by slug and locale */
-export const getPostSummaryBySlug = (slug: string, locale: Locale) => {
+export const getPostSummaryBySlug = (
+  slug: string,
+  locale: Locale
+): Post | null => {
   const fileContent = fs.readFileSync(getLocalePostPath(locale, slug))
   const { content, data } = matter(fileContent)
 
@@ -56,12 +59,16 @@ export const getPostSummaryBySlug = (slug: string, locale: Locale) => {
 export const getAllPostsSummaryByLocale = (locale: Locale) => {
   const slugs = getPostsSlugsByLocale(locale)
 
-  const posts = slugs.reduce((acc, slug) => {
-    const post = getPostSummaryBySlug(slug, locale)
-    if (post) acc.push(post)
-    return acc
-  }, [] as any[])
-  // .sort((p1, p2) => (p1.date > p2.date ? -1 : 1))
+  const posts = slugs
+    .reduce((acc, slug) => {
+      const post = getPostSummaryBySlug(slug, locale)
+      if (post) acc.push(post)
+      return acc
+    }, [] as Post[])
+    .sort(
+      (a, b) =>
+        Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
+    )
 
   return posts
 }

@@ -8,7 +8,7 @@ import { format } from 'date-fns'
 import esLocale from 'date-fns/locale/es'
 import enLocale from 'date-fns/locale/en-US'
 import { useTranslation } from 'react-i18next'
-import { Container, ViewsCounter } from '../../components'
+import { Container, Subscribe, ViewsCounter } from '../../components'
 import { getMDXCode, getPostBySlug, getPostsPaths } from '../../lib/mdx'
 import { Locale } from '../../types'
 import { mdxComponents } from '../../components/MdxComponents'
@@ -46,7 +46,7 @@ export default function Blog({ code, frontMatter, locale, slug }: BlogProps) {
       publishedAt={frontMatter.publishedAt}
       description={frontMatter.summary}
     >
-      <article className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16 w-full">
+      <article className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-10 w-full">
         <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-gray-900 dark:text-gray-50">
           {frontMatter.title}
         </h1>
@@ -76,6 +76,9 @@ export default function Blog({ code, frontMatter, locale, slug }: BlogProps) {
         </div>
         <div className="prose dark:prose-dark max-w-none w-full">
           <Component components={mdxComponents as any} />
+        </div>
+        <div className="mt-8 w-full">
+          <Subscribe locale={locale} />
         </div>
       </article>
     </Container>

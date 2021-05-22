@@ -111,3 +111,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus {
+  border: inherit;
+  -webkit-text-fill-color: inherit;
+  -webkit-box-shadow: inherit;
+  transition: 5000s ease-in-out 0s;
+}

@@ -3,8 +3,9 @@ import '../styles/prism-vsc-dark-plus.css'
 import { ThemeProvider } from 'next-themes'
 import { appWithTranslation } from 'next-i18next'
 import { IdProvider } from '@radix-ui/react-id'
+import { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <IdProvider>
       <ThemeProvider
