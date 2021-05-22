@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Locale } from '../types'
 import { Footer } from './Footer'
 import { LanguageSelect } from './LanguageSelect'
 
@@ -168,7 +169,7 @@ export function Container(props: ContainerProps) {
       >
         {children}
       </main>
-      <Footer />
+      <Footer locale={(router.locale || 'en') as Locale} />
     </>
   )
 }

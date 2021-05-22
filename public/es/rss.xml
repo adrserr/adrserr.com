@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Adrián Serrano]]></title>
+        <description><![CDATA[Adrián Serrano]]></description>
+        <link>https://adrserr.com</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Sat, 22 May 2021 14:17:55 GMT</lastBuildDate>
+        <atom:link href="https://adrserr.com/es/rss.xml" rel="self" type="application/rss+xml"/>
+        <language><![CDATA[es]]></language>
+        <item>
+            <title><![CDATA[Example Post]]></title>
+            <description><![CDATA[This frontmatter description will appear below the title]]></description>
+            <link>https://adrserr.com/es/blog/hello-world</link>
+            <guid isPermaLink="true">https://adrserr.com/es/blog/hello-world</guid>
+            <pubDate>Wed, 08 Sep 2021 22:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[How to add i18n to your Next.js v10 app with Typescript]]></title>
+            <description><![CDATA[How to easily add internazionalization to your next.js app using typescript with i18next]]></description>
+            <link>https://adrserr.com/es/blog/i18n-typescript-next</link>
+            <guid isPermaLink="true">https://adrserr.com/es/blog/i18n-typescript-next</guid>
+            <pubDate>Fri, 23 Apr 2021 22:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Example Post]]></title>
+            <description><![CDATA[This frontmatter description will appear below the title]]></description>
+            <link>https://adrserr.com/es/blog/example-post</link>
+            <guid isPermaLink="true">https://adrserr.com/es/blog/example-post</guid>
+            <pubDate>Wed, 08 Sep 2021 22:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>
