@@ -30,7 +30,9 @@
     "notFound": "No posts found",
     "summary": "Here you can find all my published articles. You can filter them by the title or description. $t(blog.articlesAvailable, {\"count\": {{articles}} }).",
     "articlesAvailable": "There is {{articles}} available article",
-    "articlesAvailable_plural": "There are {{articles}} available articles"
+    "articlesAvailable_plural": "There are {{articles}} available articles",
+    "discuss": "Discuss on Twitter",
+    "edit": "Edit on Github"
   },
   "subscribe": {
     "title": "Join to my newsletter",
