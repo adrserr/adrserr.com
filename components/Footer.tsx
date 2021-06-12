@@ -6,7 +6,8 @@ import {
   RiRssFill
 } from 'react-icons/ri'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import * as AccessibleIcon from '@radix-ui/react-accessible-icon'
+import { forwardRef } from 'react'
 import { NowPlaying } from './NowPlaying'
 import { Locale } from '../types'
 
@@ -20,6 +21,12 @@ const ExternalLink = ({ href, children }: ExternalLinkProps) => (
     {children}
   </a>
 )
+// Avoid warning https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-function-component
+const RSSFeedIcon = forwardRef(() => (
+  <AccessibleIcon.Root label="Rss feed">
+    <RiRssFill />
+  </AccessibleIcon.Root>
+))
 
 // eslint-disable-next-line import/prefer-default-export
 export const Footer = ({ locale }: { locale: Locale }) => (
@@ -28,19 +35,27 @@ export const Footer = ({ locale }: { locale: Locale }) => (
     <NowPlaying />
     <div className="flex space-x-7 p-6 max-w-2xl mx-auto items-center">
       <ExternalLink href="http://twitter.com/adrserr10">
-        <RiTwitterFill />
+        <AccessibleIcon.Root label="Twitter">
+          <RiTwitterFill />
+        </AccessibleIcon.Root>
       </ExternalLink>
       <ExternalLink href="https://github.com/adrserr">
-        <RiGithubFill />
+        <AccessibleIcon.Root label="Github">
+          <RiGithubFill />
+        </AccessibleIcon.Root>
       </ExternalLink>
       <ExternalLink href="https://www.linkedin.com/in/adrserr/">
-        <RiLinkedinBoxFill />
+        <AccessibleIcon.Root label="Linkedin">
+          <RiLinkedinBoxFill />
+        </AccessibleIcon.Root>
       </ExternalLink>
       <ExternalLink href="mailto:hello@adrserr.com">
-        <RiMailFill />
+        <AccessibleIcon.Root label="Email">
+          <RiMailFill />
+        </AccessibleIcon.Root>
       </ExternalLink>
       <Link href="/rss.xml" locale={locale}>
-        <RiRssFill />
+        <RSSFeedIcon />
       </Link>
     </div>
   </footer>

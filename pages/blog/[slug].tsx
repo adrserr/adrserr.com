@@ -80,6 +80,27 @@ export default function Blog({ code, frontMatter, locale, slug }: BlogProps) {
         <div className="mt-8 w-full">
           <Subscribe locale={locale} />
         </div>
+        <div className="text-sm text-gray-700 dark:text-gray-300">
+          <a
+            href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
+              `https://adrserr.com/blog/${
+                locale === 'es' ? `${locale}/${slug}` : slug
+              }`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t('blog.discuss')}
+          </a>
+          {` • `}
+          <a
+            href={`https://github.com/adrserr/adrserr.com/edit/main/data/posts/${locale}/${slug}.mdx`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t('blog.edit')}
+          </a>
+        </div>
       </article>
     </Container>
   )

@@ -74,28 +74,11 @@ export const getAllPostsSummaryByLocale = (locale: Locale) => {
 }
 
 /** Get code from mdx source */
-export const getMDXCode = async (source: string) => {
-  if (process.platform === 'win32') {
-    process.env.ESBUILD_BINARY_PATH = path.join(
-      process.cwd(),
-      'node_modules',
-      'esbuild',
-      'esbuild.exe'
-    )
-  } else {
-    process.env.ESBUILD_BINARY_PATH = path.join(
-      process.cwd(),
-      'node_modules',
-      'esbuild',
-      'bin',
-      'esbuild'
-    )
-  }
-  return bundleMDX(source.toString(), {
+export const getMDXCode = async (source: string) =>
+  bundleMDX(source.toString(), {
     xdmOptions: (options) => {
       options.rehypePlugins = [...(options.rehypePlugins ?? []), mdxPrism]
 
       return options
     }
   })
-}

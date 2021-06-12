@@ -87,8 +87,7 @@ module.exports = {
       })
     },
     variants: {
-      typography: ['dark'],
-      appearance: []
+      typography: ['dark']
     }
   },
   plugins: [tailwindTypography]

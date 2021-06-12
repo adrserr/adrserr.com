@@ -38,5 +38,16 @@
     "subscribe": "Subscribirme",
     "alreadySubscribe": "Este email ya está subscrito",
     "success": "Ya estas subscrito. Muchas gracias por tu interés."
+  },
+  "about": {
+    "metaTitle": "Sobre mí - Adrián Serrano",
+    "aboutMe": "Sobre mí",
+    "experience": "Experiencia",
+    "intro1": "Hola, soy Adrián. Soy un desarrollador Front-End apasionado de React, Typescript y Next.js entre otros, pero sobre todo me encanta programar.",
+    "intro2": "Crecí en Valladolid, una pequeña ciudad de España, donde fui a la Universidad y me gradué como Ingeniero Informático. En mi tiempo libre, me gusta leer comics o libros técnicos, ir con mi bicicleta, escuchar música y estar con mi familia y amigos.",
+    "minsait": "Mi primer trabajo como desarrollador. Aquí comencé mis andaduras por el mundo web, probando y experimentando con diferentes tecnologías y frameworks. En estos años pude formarme una sólida base para mi conocimiento de hoy en día.",
+    "ea": "Parece que fue ayer cuando empecé a trabajar en EA. Formo parte del equipo de Localización usando React, Typescript y Javascript. El ambiente es excepcional. Estoy muy entusiasmado por esta oportunidad.",
+    "discuss": "Hablemos en Twitter",
+    "edit": "Editar en Github"
   }
 }
