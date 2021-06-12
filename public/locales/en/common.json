@@ -38,5 +38,14 @@
     "subscribe": "Subscribe",
     "alreadySubscribe": "This email account is already subscribed.",
     "success": "You are now subscribe to my newsletter. Thanks for your interest."
+  },
+  "about": {
+    "metaTitle": "About - Adrián Serrano",
+    "aboutMe": "About me",
+    "experience": "Experience",
+    "intro1": "Hey, I'm Adrián. I'm a Front-End Developer passionate about React, Typescript and Next.js among others, but overall I enjoy programming.",
+    "intro2": "I grew up in Valladolid, a small city in Spain. I went to Valladolid's University (UVa) and I graduated with a degree in Computer Engineering. In my free time, I enjoy reading from Comics to technical books, riding my bicycle, spending time with my family and friends and listening to music.",
+    "minsait": "This was my first job as a developer. I learned about web development and I experiment with different technologies and frameworks. Those days were the basis of my today solid knowledge.",
+    "ea": "It seems like yesterday when I started working at EA. I am working in the Localization Engineering Team with React, Typescript and Javascript. The working environment and the team are exceptional. I feel excited about having such a great opportunity."
   }
 }
