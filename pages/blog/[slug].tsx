@@ -41,7 +41,7 @@ export default function Blog({ code, frontMatter, locale, slug }: BlogProps) {
 
   return (
     <Container
-      title={frontMatter.title}
+      title={`${frontMatter.title} — Adrián Serrano`}
       type="article"
       publishedAt={frontMatter.publishedAt}
       description={frontMatter.summary}

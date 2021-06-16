@@ -4,7 +4,10 @@ import { NextApiRequest, NextApiResponse } from 'next'
 interface Response {
   error: string
 }
-export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
+const subscribe = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Response>
+) => {
   const { email, locale } = req.body
 
   if (!email) {
@@ -37,3 +40,5 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     return res.status(500).json({ error: error.message || error.toString() })
   }
 }
+
+export default subscribe

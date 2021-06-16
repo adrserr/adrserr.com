@@ -22,11 +22,14 @@ const ExternalLink = ({ href, children }: ExternalLinkProps) => (
   </a>
 )
 // Avoid warning https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-function-component
-const RSSFeedIcon = forwardRef(() => (
-  <AccessibleIcon.Root label="Rss feed">
-    <RiRssFill />
-  </AccessibleIcon.Root>
-))
+// eslint-disable-next-line prefer-arrow-callback
+const RSSFeedIcon = forwardRef(function RSSFeedIcon() {
+  return (
+    <AccessibleIcon.Root label="Rss feed">
+      <RiRssFill />
+    </AccessibleIcon.Root>
+  )
+})
 
 // eslint-disable-next-line import/prefer-default-export
 export const Footer = ({ locale }: { locale: Locale }) => (
@@ -54,7 +57,7 @@ export const Footer = ({ locale }: { locale: Locale }) => (
           <RiMailFill />
         </AccessibleIcon.Root>
       </ExternalLink>
-      <Link href="/rss.xml" locale={locale}>
+      <Link href="/rss.xml" locale={locale} passHref>
         <RSSFeedIcon />
       </Link>
     </div>

@@ -1,5 +1,5 @@
+/* eslint-disable react/display-name */
 import NextImage, { ImageProps } from 'next/image'
-import { LanguageSelect } from './LanguageSelect'
 
 export const mdxComponents = {
   Image: ({ caption, ...rest }: { caption: string } & ImageProps) => (

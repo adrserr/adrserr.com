@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier', 'next'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
