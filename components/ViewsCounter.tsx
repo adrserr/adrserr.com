@@ -18,7 +18,7 @@ export const ViewsCounter = ({ slug, locale }: ViewCounterProps) => {
     const addView = () => axios.post(URL)
 
     addView()
-  }, [slug])
+  }, [URL])
 
   return (
     <span>

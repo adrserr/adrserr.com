@@ -45,7 +45,7 @@ const addView = async (slug: string, locale: Locale) => {
   return post
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const postViews = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const post = await addView(
       req.query.slug as string,
@@ -63,3 +63,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   return null
 }
+
+export default postViews

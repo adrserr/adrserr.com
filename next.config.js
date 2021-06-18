@@ -86,9 +86,6 @@ const securityHeaders = [
 ]
 
 module.exports = withBundleAnalyzer({
-  future: {
-    webpack5: true
-  },
   images: {
     domains: ['i.scdn.co']
   },
