@@ -106,3 +106,7 @@ dist
 .env.local
 
 public/sitemap.xml
+
+public/rss.xml
+
+public/es/rss.xml
