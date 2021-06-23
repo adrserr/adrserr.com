@@ -22,6 +22,7 @@ interface BlogProps {
     publishedAt: string
     updatedAt?: string
     summary: string
+    image: string
     readingTime: {
       text: string
       time: number
@@ -43,6 +44,7 @@ export default function Blog({ code, frontMatter, locale, slug }: BlogProps) {
     <Container
       title={`${frontMatter.title} — Adrián Serrano`}
       type="article"
+      image={frontMatter.image}
       publishedAt={frontMatter.publishedAt}
       description={frontMatter.summary}
     >
