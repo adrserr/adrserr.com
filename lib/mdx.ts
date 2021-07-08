@@ -6,6 +6,8 @@ import path from 'path'
 import readingTime from 'reading-time'
 // @ts-ignore
 import mdxPrism from 'mdx-prism'
+import externalLinks from 'remark-external-links'
+
 import { Locale, Post } from '../types'
 
 /** Post directory */
@@ -77,6 +79,7 @@ export const getAllPostsSummaryByLocale = (locale: Locale) => {
 export const getMDXCode = async (source: string) =>
   bundleMDX(source.toString(), {
     xdmOptions: (options) => {
+      options.remarkPlugins = [...(options.remarkPlugins ?? []), externalLinks]
       options.rehypePlugins = [...(options.rehypePlugins ?? []), mdxPrism]
 
       return options
