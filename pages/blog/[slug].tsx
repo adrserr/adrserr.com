@@ -60,7 +60,7 @@ export default function Blog({ code, frontMatter, locale, slug }: BlogProps) {
               height={24}
               width={24}
               className="rounded-full"
-              quality={100}
+              quality={65}
             />
             <p className="text-sm  text-gray-700 dark:text-gray-300 ml-2">
               Adrián Serrano |{' '}

@@ -18,7 +18,7 @@ export const NowPlaying = () => {
           src={data?.albumImageUrl ?? '/images/notPlayingImage.jpg'}
           height="64"
           width="64"
-          quality={100}
+          quality={50}
           layout={data?.albumImageUrl ? undefined : 'intrinsic'}
         />
       </div>
